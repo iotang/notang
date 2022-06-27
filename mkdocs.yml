@@ -1,0 +1,14 @@
+site_name: notang
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.top
+  font:
+    text: Cascadia Code
+    code: Cascadia Code
