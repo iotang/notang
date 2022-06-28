@@ -1,0 +1,31 @@
+[data-md-color-scheme="default"] {
+	--md-typeset-a-color: #fba81c !important;
+	--md-footer-fg-color: #000000;
+	--md-footer-bg-color: #fff;
+	--md-footer-bg-color--dark: #fff;
+	--md-footer-fg-color: #000;
+	--md-footer-fg-color--light: #000;
+	--md-footer-fg-color--lighter: #000;
+}
+
+[data-md-color-scheme="slate"] {
+	--md-default-bg-color: #000;
+	--md-default-bg-color--light: #000;
+	--md-default-bg-color--lighter: #000;
+	--md-default-bg-color--lightest: #000;
+	--md-typeset-a-color: #12a6df !important;
+	--md-footer-fg-color: #fff;
+	--md-footer-bg-color: #000;
+	--md-footer-bg-color--dark: #000;
+	--md-footer-fg-color: #fff;
+	--md-footer-fg-color--light: #fff;
+	--md-footer-fg-color--lighter: #fff;
+}
+
+.md-header--shadow {
+	box-shadow: 0 0 0 0 !important;
+}
+
+.md-tabs {
+	border-bottom: 0 !important;
+}

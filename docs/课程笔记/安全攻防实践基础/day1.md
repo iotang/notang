@@ -27,6 +27,9 @@ subjects - actions - objects
 
 ## 今天的作业
 
+!!! warning "警告"
+	抄袭行为是严厉禁止的。
+
 ### 装个 Linux 虚拟机
 
 12 代酷睿对 VirtualBox 的支持并不好（或者说就是没法用），不过 VMWare 还是可以装个 Ubuntu 虚拟机的。
