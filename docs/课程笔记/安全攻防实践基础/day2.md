@@ -8,13 +8,15 @@
 
 对于 gcc：
 
-hello.c + \*.h -(cpp)-> hello.i -(gcc)-> hello.s -(as)-> hello.o 
+hello.c + \*.h -(cpp)-> hello.i -(gcc)-> hello.s -(as)-> hello.o
 
 hello.o + \*.a + \*.so -(ld)-> ./a.out
 
 ## ELF 文件
 
 `objdump -d *.o`
+
+ELF 文件由一大片汇编（二进制）代码和一些其他杂七杂八的东西组成。
 
 File offset：这一段在 .elf 文件中的偏移。
 
@@ -48,6 +50,12 @@ File offset：这一段在 .elf 文件中的偏移。
 
 重定位的时候，链接器会在全局符号表找到相应的符号进行重定位。
 
+## 虚拟地址空间
+
+虚拟地址空间（Virtual Addres Space）是操作系统给每一个进程提供的一坨**私有的**“内存”。这些“内存”指向的数据是当前进程需要的所有数据信息，但是它们不一定都在真实的内存中。内存管理单元（Memory Management Unit，MMU）负责这“内存”和内存的转换。
+
+在内存不够用的时候，MMU 会把当前内存的某些东西扔进磁盘中。等需要它们的时候再拿出来。这样就可以更加好地运行多个程序了。
+
 ## 装载
 
 - 可执行文件：
@@ -59,7 +67,7 @@ File offset：这一段在 .elf 文件中的偏移。
 	- 程序运行时候的一个过程
 	- 在内存里面
 
-每个程序跑起来后，会得到自己的一个独立虚拟地址空间（Virtual Addres Space）。32 位下的空间为 `0x0` 到 `0xffff ffff`。（所以 32 位下的指针大小是 4 个字节。）
+每个程序跑起来后，会得到自己的一个独立虚拟地址空间。32 位下的空间为 `0x0` 到 `0xffff ffff`。（所以 32 位下的指针大小是 4 个字节。）
 
 ### 装载方式
 
@@ -72,7 +80,13 @@ File offset：这一段在 .elf 文件中的偏移。
 
 不要的模块丢到磁盘中。
 
+##### Overlay
+
 Overlay（基本上被淘汰）：程序员自己控制程序的装载和卸载。（这很费程序员。）
+
+通过各种模块互相不同时存在的特性，可以建一棵树来对这些模块的地址进行尽量可以复用的安排。
+
+##### 分页（Paging）
 
 分页（Paging）：把内存和所有磁盘中的数据和指令按照“页”为单位进行划分。之后装载和操作就都是一页一页来的。页的大小可以是 4 KiB，8 KiB，2 MiB，4 MiB 等。
 
@@ -113,19 +127,23 @@ Overlay（基本上被淘汰）：程序员自己控制程序的装载和卸载�
 
 程序的运行库管理堆的分配，glibc 下有复杂的堆分配算法。
 
-### brk
+#### brk
 
 `int brk(void *end_data_segment)`
 
-ASLR（地址空间配置随机加载）关闭时，指向数据段的末尾。
+堆的地址是从 start_brk 到 brk 的，brk 就是 program break 的意思。
 
-ASLR 开启时，在数据段末尾加上一段随机的 brk offset。
+brk() 通过把 brk 的地址往上移来增加堆的大小。
 
-brk 可以扩大或者缩小数据段，因此扩大的部分可以当作一个堆的段。
+ASLR（地址空间配置随机加载）关闭时，start_brk 指向数据段的末尾。
 
-### mmap
+ASLR 开启时，start_brk 和数据段末尾之间有一段随机的 brk offset。
+
+#### mmap
 
 `void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset)`
+
+mmap 申请一块新内存，并由此创建一个私有而匿名的映射段。
 
 `start`：起始位置。如果置 0 就是让系统自己决定。
 
@@ -248,3 +266,25 @@ void exit (int status)
     _exit(status);
 }
 ```
+
+## 今天的作业
+
+这才第二天哪，哪吃得下这种屎。
+
+### 1. 在 linux 上编译、链接、装载程序
+
+\*.c -(gcc -E)-> expanded source -(gcc -s)-> \*.s -(as)-> \*.o
+
+然而 \*.o 文件里面还没把标准库里面的那些东西链接进去。用 gcc -o 链接。
+
+### 2. 3. 手撕 ELF
+
+给的 struct 里面的顺序就是 ELF 文件中那些东西排列的顺序。
+
+### 挑战部分
+
+#### Makefile
+
+.PHONY 有什么用？假设你有个方法是 make love，然后如果你的工作目录下出现了一个叫 love 的文件，那当你想要 make love 的时候，make 就会因为 love 已经不存在而不 make love。
+
+这个时候，如果你写一个 .PHONY:love 在前面，那么 make 就不管有没有 love 都 make love。因为 .PHONY 就是 phonytargets 的意思。你可以理解成 .PHONY:love 就是告诉 make，love 总是不存在。
