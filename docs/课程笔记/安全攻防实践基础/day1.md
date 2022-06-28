@@ -1,8 +1,6 @@
-# 第 1 天
+# 第 1 天：Linux 操作系统 101
 
-## Linux 操作系统 101
-
-### Shell
+## Shell
 
 Shell 是人和计算机之间进行交流的工具。
 
@@ -15,11 +13,11 @@ Shell 是人和计算机之间进行交流的工具。
 - cp
 - mv
 
-### Linux 权限管理
+## Linux 权限管理
 
 subjects - actions - objects
 
-#### 文件权限
+### 文件权限
 
 文件夹也是一种文件。
 
