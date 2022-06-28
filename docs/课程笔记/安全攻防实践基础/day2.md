@@ -20,7 +20,7 @@ File offset：这一段在 .elf 文件中的偏移。
 
 .data 段：已经初始化了的全局静态变量和局部静态变量。
 
-.rotada 段：只读的数据（比如字符串常量）。
+.rodata 段：只读的数据（比如字符串常量）。
 
 .bss 段：未初始化的全局静态变量和局部静态变量。
 
@@ -51,13 +51,13 @@ File offset：这一段在 .elf 文件中的偏移。
 ## 装载
 
 - 可执行文件：
-  - 是静态的
-  - 预先编译好的指令和数据的集合
-  - 在磁盘里面
+	- 是静态的
+	- 预先编译好的指令和数据的集合
+	- 在磁盘里面
 - 进程：
-  - 是动态的
-  - 程序运行时候的一个过程
-  - 在内存里面
+	- 是动态的
+	- 程序运行时候的一个过程
+	- 在内存里面
 
 每个程序跑起来后，会得到自己的一个独立虚拟地址空间（Virtual Addres Space）。32 位下的空间为 `0x0` 到 `0xffff ffff`。（所以 32 位下的指针大小是 4 个字节。）
 
@@ -72,18 +72,179 @@ File offset：这一段在 .elf 文件中的偏移。
 
 不要的模块丢到磁盘中。
 
-##### Overlay（基本上被淘汰）
+Overlay（基本上被淘汰）：程序员自己控制程序的装载和卸载。（这很费程序员。）
 
-程序员自己控制程序的装载和卸载。（这很费程序员。）
-
-##### 分页（Paging）
-
-把内存和所有磁盘中的数据和指令按照“页”为单位进行划分。之后装载和操作就都是一页一页来的。
-
-页的大小可以是 4 KiB，8 KiB，2 MiB，4 MiB 等。
+分页（Paging）：把内存和所有磁盘中的数据和指令按照“页”为单位进行划分。之后装载和操作就都是一页一页来的。页的大小可以是 4 KiB，8 KiB，2 MiB，4 MiB 等。
 
 ### 进程的建立
 
 - 创建一个独立的虚拟地址空间。
 - 读取 ELF 文件头，建立虚拟空间和可执行文件的映射关系。
 - 把 CPU 指令设置成可执行文件的入口地址，位于文件头。
+
+#### 页错误
+
+上面三步执行完后，可执行文件还没有被装载到物理内存中。CPU 会发现这个问题，并触发页错误。
+
+此时，操作系统通过第二步中的数据结构，在物理内存中分配页面，之后让进程继续执行。
+
+### 页的划分
+
+以 ELF 文件中的段进行划分：空间浪费严重。
+
+根据段的权限进行划分：可读可执行的；可读可写的；只读的；……
+
+### 堆和栈
+
+#### 栈初始化
+
+进程在刚开始启动的时候，需要知道自己运行的环境。
+
+- 环境变量
+- 进程的运行参数
+
+这些东西是被压到栈里面的。
+
+#### 堆初始化
+
+如果每次都用系统调用的话，那么这样的开销是很大的，会影响性能。
+
+所以运行库先提前向操作系统申请一块较大的堆空间，程序需要的时候再从这里面拿空间给它。
+
+程序的运行库管理堆的分配，glibc 下有复杂的堆分配算法。
+
+### brk
+
+`int brk(void *end_data_segment)`
+
+ASLR（地址空间配置随机加载）关闭时，指向数据段的末尾。
+
+ASLR 开启时，在数据段末尾加上一段随机的 brk offset。
+
+brk 可以扩大或者缩小数据段，因此扩大的部分可以当作一个堆的段。
+
+### mmap
+
+`void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset)`
+
+`start`：起始位置。如果置 0 就是让系统自己决定。
+
+`length`：长度。
+
+`prot, start`：空间的权限和映射类型。
+
+## 动态链接
+
+静态链接的缺点：
+
+- 浪费内存！
+- 程序的更新和发布会很麻烦。
+
+而动态链接这么做：
+
+- 把程序的模块分割开来，形成独立的文件。
+- 让链接在运行时再运行。
+
+Linux 下：Dynamic Shared Objects (.so)
+
+Windows 下：Dynamic Linking Library (.dll)
+
+然而由于链接过程发生在装载的时候，每次装载的时候都要链接一下，这会影响性能。不过大家有方法对它进行优化。
+
+### 模块
+
+Lib.c -(Compiler)-> Lib.o
+
+Lib.o + C Runtime Library -(Linker)-> Lib.so
+
+Program1.c -(Compiler)-> Program1.o
+
+Program1.o + (Lib.so -> Stub) -(Linker)-> Program1
+
+### 地址冲突
+
+#### 装载时重定位（Rebasing）
+
+把模块里面的所有重定位项暴力修正一下。比如本来应该是 0x100，却被分到了 0x1000，那就给所有重定位项加一个 0x900 就好了。
+
+#### 地址无关代码
+
+- 模块内外的函数调用、跳转
+- 模块内外的数据访问
+
+### 模块间的数据 / 函数访问：全局偏移表（GOT 表）
+
+其他模块的全局变量地址是和模块的装载地址有关的。为此，ELF 建立了一个指向这些变量的指针数组，即 GOT 表。
+
+比如在 .data 段里面有个 `int b = 100` 在 0x20002000，在 .text 段里面有个 `void ext()` 在 0x20001000，那么 GOT 表里面就存了 b 和 ext() 的真实地址。
+
+其他家伙使用的时候，就会先 jmp 到 GOT 表里面的对应位置。
+
+#### 延迟绑定（Lazy Binding，PLT）
+
+动态链接下，函数第一次被用到的时候才给它绑定一下。
+
+为了实现它，调用函数的时候，在原函数和 GOT 表之间还有一个 PLT 表。
+
+```asm
+bar@plt:
+	jmp *(bar@GOT)
+	push n
+	push moduleID
+	jmp _dl_runtime_resolve
+```
+
+初始化前，*(bar@GOT) 暂时是它下一条指令的位置。也就是这个 jmp 指令和一个空指令一样。
+
+最后调用的 _dl_runtime_resolve 才会把 bar 函数真正的地址写到 bar@GOT 里面。
+
+#### 数据段地址无关性
+
+```cpp
+static int a;
+static int *p = &a;
+```
+
+a 的地址会随着装载的时候的地址而改变，而 p 指向的绝对地址也会一起改变。
+
+此时编译器和链接器又会产生一个重定位表。
+
+## 从 _start 开始
+
+_start -> __libc_start_main -> exit -> _exit
+
+main 函数就在 __libc_start_main 里面。
+
+大概关系如下：
+
+```cpp
+void _start()
+{
+	%ebp = 0;
+	int argc = (pop from stack);
+	char **argv = (top of stack);
+	__libc_start_main(main, argc, argv,
+		__libc_csu_init, __libc_csu_fini, edx, (top of stack));
+}
+
+int __libc_start_main(
+	int (*main) (int, char **, char **),
+	int argc,
+	char * __unbounded *__unbounded ubp_av,
+	__typeof (main) init,
+	void (*fini) (void),
+	void (*rtld_fini) (void),
+	void * __unbounded stack_end) {/*...*/}
+
+void exit (int status)
+{
+    while (__exit_funcs != NULL)
+	{
+        // __exit_funcs是存储由__cxa_atexit和atexit注册的函数链表
+        // 执行注册函数
+        __exit_funcs = __exit_funcs->next;
+    }
+    /*...*/
+    _exit(status);
+}
+```
