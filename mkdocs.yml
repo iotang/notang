@@ -1,8 +1,26 @@
 site_name: notang
+repo_url: https://github.com/iotang/notang
+repo_name: iotang/notang
+copyright: Copyright &copy; 2022 iotang | CC-BY-NC-SA
+
+edit_uri: edit/master/docs/
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/iotang
+    - icon: fontawesome/brands/steam
+      link: https://steamcommunity.com/profiles/76561198292790354/
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/12212409
 
 theme:
   name: material
   language: zh
+  logo: assets/book-edit.svg
+  favicon: images/victini.png
+  icon:
+    repo: fontawesome/brands/github
   features:
     - navigation.instant
     - navigation.tracking
@@ -30,12 +48,21 @@ theme:
 
 plugins:
   - search
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: iso_date
+      enable_creation_date: false
   
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 
+  - meta
+  - toc:
+      permalink: true
+
   - pymdownx.superfences
+  - pymdownx.smartsymbols
   - pymdownx.snippets
 
   - abbr
@@ -64,14 +91,14 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
 
-  - attr_list
   - md_in_html
 
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
 
-  - pymdownx.betterem
+  - pymdownx.betterem:
+      smart_enable: all
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji 
       emoji_generator: !!python/name:materialx.emoji.to_svg
@@ -82,4 +109,4 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
-  - stylesheets/theme.css
+  - css/theme.css
