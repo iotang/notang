@@ -288,6 +288,6 @@ void exit (int status)
 
 #### Makefile
 
-.PHONY 有什么用？假设你有个方法是 make love，然后如果你的工作目录下出现了一个叫 love 的文件，那当你想要 make love 的时候，make 就会因为 love 已经不存在而不 make love。
+.PHONY 有什么用？假设你有个方法是 make love，然后如果你的工作目录下出现了一个叫 love 的文件，那当你想要 make love 的时候，make 就会因为 love 已经存在而不 make love。
 
 这个时候，如果你写一个 .PHONY:love 在前面，那么 make 就不管有没有 love 都 make love。因为 .PHONY 就是 phonytargets 的意思。你可以理解成 .PHONY:love 就是告诉 make，love 总是不存在。
