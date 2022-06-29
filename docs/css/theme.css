@@ -27,6 +27,14 @@
 	--md-footer-fg-color--lighter: #fff;
 }
 
+[data-md-color-primary="black"] .md-header {
+	background-color: #121212;
+}
+
+[data-md-color-primary="black"] .md-tabs {
+	background-color: #121212;
+}
+
 .md-header--shadow {
 	box-shadow: 0 0 0 0 !important;
 }
