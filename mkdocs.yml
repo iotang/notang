@@ -22,11 +22,10 @@ theme:
     logo: material/book-edit
     repo: fontawesome/brands/github
   features:
+    - content.code.annotate
     - navigation.instant
     - navigation.tracking
     - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
     - navigation.indexes
     - navigation.top
   font:
@@ -49,8 +48,8 @@ theme:
 plugins:
   - search
   - git-revision-date-localized:
-      enable_creation_date: true
-      type: iso_date
+      type: iso_datetime
+      timezone: Asia/Shanghai
       enable_creation_date: false
   
 markdown_extensions:
@@ -61,6 +60,7 @@ markdown_extensions:
   - toc:
       permalink: true
 
+  - pymdownx.magiclink
   - pymdownx.superfences
   - pymdownx.smartsymbols
   - pymdownx.snippets
@@ -71,6 +71,7 @@ markdown_extensions:
   - pymdownx.details
 
   - attr_list
+  - sane_lists
 
   - pymdownx.highlight:
       anchor_linenums: true
