@@ -6,11 +6,12 @@
 
 GEF 增强了 GDB。
 
-- si
-- ni
+- si：单步调试，进入函数。
+- ni：单步调试，但不进入函数。
 - s
 - n
 - vmmap：虚拟内存映射情况。
+- disass：找出某个函数的汇编代码。
 
 > 让 gcc 编译一个 32 位程序出来：`-m32`。
 > 
@@ -212,9 +213,11 @@ pwntools 和可执行程序之间进行交互，并提供一些很方便的功�
 
 ```python
 >>> from pwn import *
+>>> p = process(...)
 >>> payload = b"\xff" * 128
 >>> p.sendline(payload)
 >>> p.recv(128)
+>>> p.interactive()
 ```
 
 ### 远程交互
@@ -226,113 +229,39 @@ pwntools 和可执行程序之间进行交互，并提供一些很方便的功�
 >>> p.send(...)
 ```
 
+## 今天的作业
+
+!!! warning "警告"
+	抄袭行为是严厉禁止的。
+
 ### Overflow 例子
 
 #### 第 1 波
 
-```cpp
-#include <stdio.h>
+??? done "提示"
+    ```shell
+    gef➤  p &buffer
+    $3 = (char (*)[32]) 0x7fffffffde10
+    gef➤  p &rootuser
+    $4 = (int *) 0x7fffffffde3c
+    ```
 
-#define ROOTPASSWD "AAANB"
+#### 第 2 波
 
-char passwd[16];
-
-int main(int argc, char *argv[])
-{
-    char buffer[32];
-    int rootuser = 0;
-
-    scanf("%s", passwd);
-    if (!strcmp(passwd, ROOTPASSWD))
-    {
-        rootuser = 1;
-    }
-
-    fgets(buffer, 48, stdin);
-
-    if (rootuser)
-    {
-        printf("you are the root...");
-        /* privilege code */
-    }
-    else
-    {
-        printf("you are normal user...");
-        /* inprivilege code */
-    }
-    exit(0);
-}
-```
-
-fgets 尝试在一个 32 长度的字符数组里面丢 48 个字符？
-
-```shell
-gef➤  disass main
-Dump of assembler code for function main:
-   0x00000000000011c9 <+0>:	endbr64 
-   0x00000000000011cd <+4>:	push   rbp
-   0x00000000000011ce <+5>:	mov    rbp,rsp
-   0x00000000000011d1 <+8>:	sub    rsp,0x40
-   0x00000000000011d5 <+12>:	mov    DWORD PTR [rbp-0x34],edi
-   0x00000000000011d8 <+15>:	mov    QWORD PTR [rbp-0x40],rsi
-   0x00000000000011dc <+19>:	mov    DWORD PTR [rbp-0x4],0x0
-...
-```
-
-攻击 rootuser 吧！
-
-```shell
-gef➤  p &buffer
-$3 = (char (*)[32]) 0x7fffffffde10
-gef➤  p &rootuser
-$4 = (int *) 0x7fffffffde3c
-```
+??? done "提示"
+    返回地址是在什么时候插入的呢？插在了哪里呢？
 
 #### 第 3 波
 
-```cpp
-#include <stdio.h>
-#include <stdlib.h>
+??? done "提示"
+    ```shell
+    gef➤  p &backdoor
+    $1 = (void (*)()) 0x401176 <backdoor>
+    gef➤  p &main
+    $2 = (int (*)(int, char **)) 0x4011b9 <main>
+    ```
 
-void backdoor()
-{
-    printf("Hi Backdoor\n");
-    system("/bin/sh");
-}
+#### 第 4 波
 
-void normal()
-{
-    printf("Hi Normal\n");
-    return;
-}
-
-int main(int argc, char *argv[])
-{
-    void (*ptr)(void) = normal;
-    char buffer[32];
-    gets(buffer);
-    puts(buffer);
-    ptr();
-    return 0;
-}
-```
-
-```shell
-$ gcc example3.c -o example3 -g -no-pie -fno-stack-protector
-```
-
-把 ptr 变成 backdoor！
-
-```shell
-gef➤  p &backdoor
-$1 = (void (*)()) 0x401176 <backdoor>
-gef➤  p &main
-$2 = (int (*)(int, char **)) 0x4011b9 <main>
-```
-
-```python
->>> payload = b'A' * 0x?? + p64(0x0000000000401176)
->>> ...
->>> p.sendline(payload)
->>> p.interactive()
-```
+??? done "提示"
+    buffer[32] 的第 buffer[16] 到 buffer[23] 会填充到函数 bof 的栈帧的 $rbp。
