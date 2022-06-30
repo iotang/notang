@@ -13,7 +13,7 @@
     
     
       
-        <title>第 1 天：Linux 操作系统 101 - notang</title>
+        <title>第 2 天：二进制基础 - notang</title>
       
     
     
@@ -66,7 +66,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-linux-101" class="md-skip">
+        <a href="#2" class="md-skip">
           跳转至
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              第 1 天：Linux 操作系统 101
+              第 2 天：二进制基础
             
           </span>
         </div>
@@ -991,6 +991,20 @@
               
   
   
+  
+    <li class="md-nav__item">
+      <a href="../day1/" class="md-nav__link">
+        第 1 天：Linux 操作系统 101
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
     
   
   
@@ -1003,12 +1017,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          第 1 天：Linux 操作系统 101
+          第 2 天：二进制基础
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        第 1 天：Linux 操作系统 101
+        第 2 天：二进制基础
       </a>
       
         
@@ -1027,47 +1041,284 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    Shell
+  <a href="#_1" class="md-nav__link">
+    编译
   </a>
-  
-    <nav class="md-nav" aria-label="Shell">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#shell_1" class="md-nav__link">
-    Shell 命令
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    Linux 权限管理
+  <a href="#elf" class="md-nav__link">
+    ELF 文件
   </a>
-  
-    <nav class="md-nav" aria-label="Linux 权限管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    文件权限
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    静态链接
+  </a>
+  
+    <nav class="md-nav" aria-label="静态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    空间与地址分配
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    符号解析和重定位
+  </a>
+  
+    <nav class="md-nav" aria-label="符号解析和重定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    重定位表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    符号解析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    虚拟地址空间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    装载
+  </a>
+  
+    <nav class="md-nav" aria-label="装载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    装载方式
+  </a>
+  
+    <nav class="md-nav" aria-label="装载方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    全部装入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    动态装载
+  </a>
+  
+    <nav class="md-nav" aria-label="动态装载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overlay" class="md-nav__link">
+    Overlay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paging" class="md-nav__link">
+    分页（Paging）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    进程的建立
+  </a>
+  
+    <nav class="md-nav" aria-label="进程的建立">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    页错误
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    页的划分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    堆和栈
+  </a>
+  
+    <nav class="md-nav" aria-label="堆和栈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    栈初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    堆初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brk" class="md-nav__link">
+    brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmap" class="md-nav__link">
+    mmap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    动态链接
+  </a>
+  
+    <nav class="md-nav" aria-label="动态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    地址冲突
+  </a>
+  
+    <nav class="md-nav" aria-label="地址冲突">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebasing" class="md-nav__link">
+    装载时重定位（Rebasing）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    地址无关代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#got" class="md-nav__link">
+    模块间的数据 / 函数访问：全局偏移表（GOT 表）
+  </a>
+  
+    <nav class="md-nav" aria-label="模块间的数据 / 函数访问：全局偏移表（GOT 表）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-bindingplt" class="md-nav__link">
+    延迟绑定（Lazy Binding，PLT）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    数据段地址无关性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_start" class="md-nav__link">
+    从 _start 开始
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
     今天的作业
   </a>
   
@@ -1075,36 +1326,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#linux_1" class="md-nav__link">
-    装个 Linux 虚拟机
+  <a href="#1-linux" class="md-nav__link">
+    1. 在 linux 上编译、链接、装载程序
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#linux_2" class="md-nav__link">
-    Linux 文件访问控制
+  <a href="#2-3-elf" class="md-nav__link">
+    2. 3. 手撕 ELF
   </a>
   
-    <nav class="md-nav" aria-label="Linux 文件访问控制">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    挑战部分
+  </a>
+  
+    <nav class="md-nav" aria-label="挑战部分">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setuid" class="md-nav__link">
-    setuid
+  <a href="#makefile" class="md-nav__link">
+    Makefile
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ls-l-permissions" class="md-nav__link">
-    通过 ls -l 查看文件的 permissions
-  </a>
   
 </li>
         
@@ -1117,20 +1368,6 @@
   
 </nav>
       
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../day2/" class="md-nav__link">
-        第 2 天：二进制基础
-      </a>
     </li>
   
 
@@ -1270,47 +1507,284 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#shell" class="md-nav__link">
-    Shell
+  <a href="#_1" class="md-nav__link">
+    编译
   </a>
-  
-    <nav class="md-nav" aria-label="Shell">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#shell_1" class="md-nav__link">
-    Shell 命令
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#linux" class="md-nav__link">
-    Linux 权限管理
+  <a href="#elf" class="md-nav__link">
+    ELF 文件
   </a>
-  
-    <nav class="md-nav" aria-label="Linux 权限管理">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    文件权限
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    静态链接
+  </a>
+  
+    <nav class="md-nav" aria-label="静态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    空间与地址分配
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    符号解析和重定位
+  </a>
+  
+    <nav class="md-nav" aria-label="符号解析和重定位">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    重定位表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    符号解析
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    虚拟地址空间
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    装载
+  </a>
+  
+    <nav class="md-nav" aria-label="装载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    装载方式
+  </a>
+  
+    <nav class="md-nav" aria-label="装载方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    全部装入
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    动态装载
+  </a>
+  
+    <nav class="md-nav" aria-label="动态装载">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#overlay" class="md-nav__link">
+    Overlay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#paging" class="md-nav__link">
+    分页（Paging）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    进程的建立
+  </a>
+  
+    <nav class="md-nav" aria-label="进程的建立">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    页错误
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    页的划分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    堆和栈
+  </a>
+  
+    <nav class="md-nav" aria-label="堆和栈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    栈初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    堆初始化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#brk" class="md-nav__link">
+    brk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmap" class="md-nav__link">
+    mmap
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    动态链接
+  </a>
+  
+    <nav class="md-nav" aria-label="动态链接">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    模块
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    地址冲突
+  </a>
+  
+    <nav class="md-nav" aria-label="地址冲突">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rebasing" class="md-nav__link">
+    装载时重定位（Rebasing）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    地址无关代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#got" class="md-nav__link">
+    模块间的数据 / 函数访问：全局偏移表（GOT 表）
+  </a>
+  
+    <nav class="md-nav" aria-label="模块间的数据 / 函数访问：全局偏移表（GOT 表）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-bindingplt" class="md-nav__link">
+    延迟绑定（Lazy Binding，PLT）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    数据段地址无关性
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_start" class="md-nav__link">
+    从 _start 开始
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
     今天的作业
   </a>
   
@@ -1318,36 +1792,36 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#linux_1" class="md-nav__link">
-    装个 Linux 虚拟机
+  <a href="#1-linux" class="md-nav__link">
+    1. 在 linux 上编译、链接、装载程序
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#linux_2" class="md-nav__link">
-    Linux 文件访问控制
+  <a href="#2-3-elf" class="md-nav__link">
+    2. 3. 手撕 ELF
   </a>
   
-    <nav class="md-nav" aria-label="Linux 文件访问控制">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    挑战部分
+  </a>
+  
+    <nav class="md-nav" aria-label="挑战部分">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setuid" class="md-nav__link">
-    setuid
+  <a href="#makefile" class="md-nav__link">
+    Makefile
   </a>
   
 </li>
         
       </ul>
     </nav>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ls-l-permissions" class="md-nav__link">
-    通过 ls -l 查看文件的 permissions
-  </a>
   
 </li>
         
@@ -1368,63 +1842,248 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/iotang/notang/edit/master/docs/课程笔记/安全攻防实践基础/day1.md" title="编辑此页" class="md-content__button md-icon">
+  <a href="https://github.com/iotang/notang/edit/master/docs/课程笔记/安全攻防实践基础/day2.md" title="编辑此页" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
 
-<h1 id="1-linux-101">第 1 天：Linux 操作系统 101<a class="headerlink" href="#1-linux-101" title="Permanent link">&para;</a></h1>
-<h2 id="shell">Shell<a class="headerlink" href="#shell" title="Permanent link">&para;</a></h2>
-<p>Shell 是人和计算机之间进行交流的工具。</p>
-<h3 id="shell_1">Shell 命令<a class="headerlink" href="#shell_1" title="Permanent link">&para;</a></h3>
+<h1 id="2">第 2 天：二进制基础<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
+<p>来自：《程序员的自我修养》</p>
+<h2 id="_1">编译<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>主流编译器：gcc，Windows Compiler (cl.exe)，clang，……</p>
+<p>对于 gcc：</p>
+<p>hello.c + *.h -(cpp)-&gt; hello.i -(gcc)-&gt; hello.s -(as)-&gt; hello.o</p>
+<p>hello.o + *.a + *.so -(ld)-&gt; ./a.out</p>
+<h2 id="elf">ELF 文件<a class="headerlink" href="#elf" title="Permanent link">&para;</a></h2>
+<p><code>objdump -d *.o</code></p>
+<p>ELF 文件由一大片汇编（二进制）代码和一些其他杂七杂八的东西组成。</p>
+<p>File offset：这一段在 .elf 文件中的偏移。</p>
+<p>.data 段：已经初始化了的全局静态变量和局部静态变量。</p>
+<p>.rodata 段：只读的数据（比如字符串常量）。</p>
+<p>.bss 段：未初始化的全局静态变量和局部静态变量。</p>
+<p>（C 语言编译器会把全局符号分成 strong 和 weak 两类：函数和初始化过的全局符号为 strong，没有初始化的全局符号是 weak。.bss 段存没初始化的那一部分。）</p>
+<p>.comment 段：编译器的信息。</p>
+<h2 id="_2">静态链接<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">空间与地址分配<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
-<li>ls</li>
-<li>pwd</li>
-<li>cat</li>
-<li>echo</li>
-<li>cp</li>
-<li>mv</li>
+<li>扫描所有的输入目标文件，获得它们的各个段的各种属性。</li>
+<li>收集所有目标文件中的符号定义和符号，引用到一个全局符号表。</li>
+<li>合并所有段，并建立映射关系。</li>
 </ul>
-<h2 id="linux">Linux 权限管理<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h2>
-<p>subjects - actions - objects</p>
-<h3 id="_1">文件权限<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p>文件夹也是一种文件。</p>
-<p>每个文件有它的拥有者 owner 和所属的组 group。</p>
-<p>文件权限：读 r，写 w，执行 x。每个文件有三组这样的权限，一组给所有者，一组给用户组，一组给其他人。</p>
-<h2 id="_2">今天的作业<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_4">符号解析和重定位<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>以上一步收集的信息，读取输入文件中，段的数据和重定位信息，进行符号解析和重定位。</li>
+</ul>
+<h4 id="_5">重定位表<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<h4 id="_6">符号解析<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>每个目标文件都可能定义了一些符号，也可能引用了定义在其他目标文件的符号。</p>
+<p>重定位的时候，链接器会在全局符号表找到相应的符号进行重定位。</p>
+<h2 id="_7">虚拟地址空间<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>虚拟地址空间（Virtual Addres Space）是操作系统给每一个进程提供的一坨**私有的**“内存”。这些“内存”指向的数据是当前进程需要的所有数据信息，但是它们不一定都在真实的内存中。内存管理单元（Memory Management Unit，MMU）负责这“内存”和内存的转换。</p>
+<p>在内存不够用的时候，MMU 会把当前内存的某些东西扔进磁盘中。等需要它们的时候再拿出来。这样就可以更加好地运行多个程序了。</p>
+<h2 id="_8">装载<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>可执行文件：<ul>
+<li>是静态的</li>
+<li>预先编译好的指令和数据的集合</li>
+<li>在磁盘里面</li>
+</ul>
+</li>
+<li>进程：<ul>
+<li>是动态的</li>
+<li>程序运行时候的一个过程</li>
+<li>在内存里面</li>
+</ul>
+</li>
+</ul>
+<p>每个程序跑起来后，会得到自己的一个独立虚拟地址空间。32 位下的空间为 <code>0x0</code> 到 <code>0xffff ffff</code>。（所以 32 位下的指针大小是 4 个字节。）</p>
+<h3 id="_9">装载方式<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h4 id="_10">全部装入<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<ul>
+<li>家里有矿啊？</li>
+<li>所需内存大于物理内存……？</li>
+</ul>
+<h4 id="_11">动态装载<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>不要的模块丢到磁盘中。</p>
+<h5 id="overlay">Overlay<a class="headerlink" href="#overlay" title="Permanent link">&para;</a></h5>
+<p>Overlay（基本上被淘汰）：程序员自己控制程序的装载和卸载。（这很费程序员。）</p>
+<p>通过各种模块互相不同时存在的特性，可以建一棵树来对这些模块的地址进行尽量可以复用的安排。</p>
+<h5 id="paging">分页（Paging）<a class="headerlink" href="#paging" title="Permanent link">&para;</a></h5>
+<p>分页（Paging）：把内存和所有磁盘中的数据和指令按照“页”为单位进行划分。之后装载和操作就都是一页一页来的。页的大小可以是 4 KiB，8 KiB，2 MiB，4 MiB 等。</p>
+<h3 id="_12">进程的建立<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>创建一个独立的虚拟地址空间。</li>
+<li>读取 ELF 文件头，建立虚拟空间和可执行文件的映射关系。</li>
+<li>把 CPU 指令设置成可执行文件的入口地址，位于文件头。</li>
+</ul>
+<h4 id="_13">页错误<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<p>上面三步执行完后，可执行文件还没有被装载到物理内存中。CPU 会发现这个问题，并触发页错误。</p>
+<p>此时，操作系统通过第二步中的数据结构，在物理内存中分配页面，之后让进程继续执行。</p>
+<h3 id="_14">页的划分<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>以 ELF 文件中的段进行划分：空间浪费严重。</p>
+<p>根据段的权限进行划分：可读可执行的；可读可写的；只读的；……</p>
+<h3 id="_15">堆和栈<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<h4 id="_16">栈初始化<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h4>
+<p>进程在刚开始启动的时候，需要知道自己运行的环境。</p>
+<ul>
+<li>环境变量</li>
+<li>进程的运行参数</li>
+</ul>
+<p>这些东西是被压到栈里面的。</p>
+<h4 id="_17">堆初始化<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
+<p>如果每次都用系统调用的话，那么这样的开销是很大的，会影响性能。</p>
+<p>所以运行库先提前向操作系统申请一块较大的堆空间，程序需要的时候再从这里面拿空间给它。</p>
+<p>程序的运行库管理堆的分配，glibc 下有复杂的堆分配算法。</p>
+<h4 id="brk">brk<a class="headerlink" href="#brk" title="Permanent link">&para;</a></h4>
+<p><code>int brk(void *end_data_segment)</code></p>
+<p>堆的地址是从 start_brk 到 brk 的，brk 就是 program break 的意思。</p>
+<p>brk() 通过把 brk 的地址往上移来增加堆的大小。</p>
+<p>ASLR（地址空间配置随机加载）关闭时，start_brk 指向数据段的末尾。</p>
+<p>ASLR 开启时，start_brk 和数据段末尾之间有一段随机的 brk offset。</p>
+<h4 id="mmap">mmap<a class="headerlink" href="#mmap" title="Permanent link">&para;</a></h4>
+<p><code>void *mmap(void *start, size_t length, int prot, int flags, int fd, off_t offset)</code></p>
+<p>mmap 申请一块新内存，并由此创建一个私有而匿名的映射段。</p>
+<p><code>start</code>：起始位置。如果置 0 就是让系统自己决定。</p>
+<p><code>length</code>：长度。</p>
+<p><code>prot, start</code>：空间的权限和映射类型。</p>
+<h2 id="_18">动态链接<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<p>静态链接的缺点：</p>
+<ul>
+<li>浪费内存！</li>
+<li>程序的更新和发布会很麻烦。</li>
+</ul>
+<p>而动态链接这么做：</p>
+<ul>
+<li>把程序的模块分割开来，形成独立的文件。</li>
+<li>让链接在运行时再运行。</li>
+</ul>
+<p>Linux 下：Dynamic Shared Objects (.so)</p>
+<p>Windows 下：Dynamic Linking Library (.dll)</p>
+<p>然而由于链接过程发生在装载的时候，每次装载的时候都要链接一下，这会影响性能。不过大家有方法对它进行优化。</p>
+<h3 id="_19">模块<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
+<p>Lib.c -(Compiler)-&gt; Lib.o</p>
+<p>Lib.o + C Runtime Library -(Linker)-&gt; Lib.so</p>
+<p>Program1.c -(Compiler)-&gt; Program1.o</p>
+<p>Program1.o + (Lib.so -&gt; Stub) -(Linker)-&gt; Program1</p>
+<h3 id="_20">地址冲突<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h4 id="rebasing">装载时重定位（Rebasing）<a class="headerlink" href="#rebasing" title="Permanent link">&para;</a></h4>
+<p>把模块里面的所有重定位项暴力修正一下。比如本来应该是 0x100，却被分到了 0x1000，那就给所有重定位项加一个 0x900 就好了。</p>
+<h4 id="_21">地址无关代码<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h4>
+<ul>
+<li>模块内外的函数调用、跳转</li>
+<li>模块内外的数据访问</li>
+</ul>
+<h3 id="got">模块间的数据 / 函数访问：全局偏移表（GOT 表）<a class="headerlink" href="#got" title="Permanent link">&para;</a></h3>
+<p>其他模块的全局变量地址是和模块的装载地址有关的。为此，ELF 建立了一个指向这些变量的指针数组，即 GOT 表。</p>
+<p>比如在 .data 段里面有个 <code>int b = 100</code> 在 0x20002000，在 .text 段里面有个 <code>void ext()</code> 在 0x20001000，那么 GOT 表里面就存了 b 和 ext() 的真实地址。</p>
+<p>其他家伙使用的时候，就会先 jmp 到 GOT 表里面的对应位置。</p>
+<h4 id="lazy-bindingplt">延迟绑定（Lazy Binding，PLT）<a class="headerlink" href="#lazy-bindingplt" title="Permanent link">&para;</a></h4>
+<p>动态链接下，函数第一次被用到的时候才给它绑定一下。</p>
+<p>为了实现它，调用函数的时候，在原函数和 GOT 表之间还有一个 PLT 表。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nl">bar@plt:</span><span class="w"></span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="p">*(</span><span class="no">bar@GOT</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="no">n</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="nf">push</span><span class="w"> </span><span class="no">moduleID</span><span class="w"></span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nf">jmp</span><span class="w"> </span><span class="no">_dl_runtime_resolve</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>初始化前，*(bar@GOT) 暂时是它下一条指令的位置。也就是这个 jmp 指令和一个空指令一样。</p>
+<p>最后调用的 _dl_runtime_resolve 才会把 bar 函数真正的地址写到 bar@GOT 里面。</p>
+<h4 id="_22">数据段地址无关性<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h4>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<p>a 的地址会随着装载的时候的地址而改变，而 p 指向的绝对地址也会一起改变。</p>
+<p>此时编译器和链接器又会产生一个重定位表。</p>
+<h2 id="_start">从 _start 开始<a class="headerlink" href="#_start" title="Permanent link">&para;</a></h2>
+<p>_start -&gt; __libc_start_main -&gt; exit -&gt; _exit</p>
+<p>main 函数就在 __libc_start_main 里面。</p>
+<p>大概关系如下：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span>
+<span class="normal"><a href="#__codelineno-2-27">27</a></span>
+<span class="normal"><a href="#__codelineno-2-28">28</a></span>
+<span class="normal"><a href="#__codelineno-2-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">_start</span><span class="p">()</span><span class="w"></span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="o">%</span><span class="n">ebp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">pop</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="n">__libc_start_main</span><span class="p">(</span><span class="n">main</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">        </span><span class="n">__libc_csu_init</span><span class="p">,</span><span class="w"> </span><span class="n">__libc_csu_fini</span><span class="p">,</span><span class="w"> </span><span class="n">edx</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">top</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">stack</span><span class="p">));</span><span class="w"></span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="kt">int</span><span class="w"> </span><span class="nf">__libc_start_main</span><span class="p">(</span><span class="w"></span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">main</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="p">),</span><span class="w"></span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">__unbounded</span><span class="w"> </span><span class="o">*</span><span class="n">__unbounded</span><span class="w"> </span><span class="n">ubp_av</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">    </span><span class="n">__typeof</span><span class="w"> </span><span class="p">(</span><span class="n">main</span><span class="p">)</span><span class="w"> </span><span class="n">init</span><span class="p">,</span><span class="w"></span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">fini</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">),</span><span class="w"></span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">rtld_fini</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">),</span><span class="w"></span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">__unbounded</span><span class="w"> </span><span class="n">stack_end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="cm">/*...*/</span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a><span class="kt">void</span><span class="w"> </span><span class="nf">exit</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">__exit_funcs</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">)</span><span class="w"></span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a><span class="w">    </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a><span class="w">        </span><span class="c1">// __exit_funcs是存储由__cxa_atexit和atexit注册的函数链表</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a><span class="w">        </span><span class="c1">// 执行注册函数</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a><span class="w">        </span><span class="n">__exit_funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">__exit_funcs</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="w">    </span><span class="cm">/*...*/</span><span class="w"></span>
+<a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="w">    </span><span class="n">_exit</span><span class="p">(</span><span class="n">status</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_23">今天的作业<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">警告</p>
 <p>抄袭行为是严厉禁止的。</p>
 </div>
-<h3 id="linux_1">装个 Linux 虚拟机<a class="headerlink" href="#linux_1" title="Permanent link">&para;</a></h3>
-<p>12 代酷睿对 VirtualBox 的支持并不好（或者说就是没法用），不过 VMWare 还是可以装个 Ubuntu 虚拟机的。</p>
-<h3 id="linux_2">Linux 文件访问控制<a class="headerlink" href="#linux_2" title="Permanent link">&para;</a></h3>
-<p><code>chmod</code> 命令改变一些文件的权限。</p>
-<p><code>chown</code> 命令改变一些文件的所有者。</p>
-<p><code>chgrp</code> 命令改变一些文件的所属的群组。</p>
-<p>文件拥有者是 bob：<code>chown bob hello.sh</code></p>
-<p>文件所属的组是 ctf：<code>chown :ctf hello.sh</code> （我是不是该用 <code>chgrp</code> 的来着？）</p>
-<p>更改权限：<code>chmod 640 hello.sh</code></p>
-<h4 id="setuid">setuid<a class="headerlink" href="#setuid" title="Permanent link">&para;</a></h4>
-<p><code>setuid</code>：执行这个文件的时候，身份会变成这个文件的所有者。</p>
-<p>比如 passwd 当然属于 root，但是各个用户应该有权限更改自己的密码。而 <code>setuid</code> 权限就是为了让普通用户也能更改这属于 root 的文件。</p>
-<h3 id="ls-l-permissions">通过 ls -l 查看文件的 permissions<a class="headerlink" href="#ls-l-permissions" title="Permanent link">&para;</a></h3>
-<p><code>-rw-rw-r-- 1 iotang iotang 51  6月 27 18:57 hello.sh</code></p>
-<p><code>-</code>：是一个文件。</p>
-<p><code>rw-rw-r--</code>：所有者拥有读写权限，所属用户组拥有读写权限，其他人拥有读权限。</p>
-<p><code>1</code>：连接的文件数。</p>
-<p><code>iotang iotang</code>：拥有人是 iotang，所属用户组是 iotang。</p>
-<p><code>51</code>：文件大小。</p>
-<p><code>6月 27 18:57</code>：修改时间。</p>
-<p><code>hello.sh</code>：文件名。</p>
+<p>这才第二天哪，哪吃得下这种屎。</p>
+<h3 id="1-linux">1. 在 linux 上编译、链接、装载程序<a class="headerlink" href="#1-linux" title="Permanent link">&para;</a></h3>
+<p>*.c -(gcc -E)-&gt; expanded source -(gcc -s)-&gt; *.s -(as)-&gt; *.o</p>
+<p>然而 *.o 文件里面还没把标准库里面的那些东西链接进去。用 gcc -o 链接。</p>
+<h3 id="2-3-elf">2. 3. 手撕 ELF<a class="headerlink" href="#2-3-elf" title="Permanent link">&para;</a></h3>
+<p>给的 struct 里面的顺序就是 ELF 文件中那些东西排列的顺序。</p>
+<h3 id="_24">挑战部分<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h4 id="makefile">Makefile<a class="headerlink" href="#makefile" title="Permanent link">&para;</a></h4>
+<p>.PHONY 有什么用？假设你有个方法是 make love，然后如果你的工作目录下出现了一个叫 love 的文件，那当你想要 make love 的时候，make 就会因为 love 已经存在而不 make love。</p>
+<p>这个时候，如果你写一个 .PHONY:love 在前面，那么 make 就不管有没有 love 都 make love。因为 .PHONY 就是 phonytargets 的意思。你可以理解成 .PHONY:love 就是告诉 make，love 总是不存在。</p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       最后更新:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-06-28</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2022-06-29</span>
       
     
   </small>
@@ -1449,7 +2108,7 @@
     <nav class="md-footer__inner md-grid" aria-label="页脚" >
       
         
-        <a href="../day0/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第 0 天：这是啥啊？" rel="prev">
+        <a href="../day1/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 第 1 天：Linux 操作系统 101" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1458,20 +2117,20 @@
               <span class="md-footer__direction">
                 上一页
               </span>
-              第 0 天：这是啥啊？
+              第 1 天：Linux 操作系统 101
             </div>
           </div>
         </a>
       
       
         
-        <a href="../day2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第 2 天：二进制基础" rel="next">
+        <a href="../day3/" class="md-footer__link md-footer__link--next" aria-label="下一页: 第 3 天：逆向工程" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 下一页
               </span>
-              第 2 天：二进制基础
+              第 3 天：逆向工程
             </div>
           </div>
           <div class="md-footer__button md-icon">
