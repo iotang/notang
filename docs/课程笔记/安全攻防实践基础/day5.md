@@ -47,15 +47,15 @@
 
 数学描述：
 
-$C = E(P) = (P + K) \bmod 26$ (C: Cipher, E: Encrypt, P: Plain, K: Key)
+$C = E(P) = (P + K) \mod 26$ (C: Cipher, E: Encrypt, P: Plain, K: Key)
 
-$P = D(C) = (C - K) \bmod 26$ (D: Decrypt)
+$P = D(C) = (C - K) \mod 26$ (D: Decrypt)
 
 #### 仿射密码（Affine）
 
-$y = E(x) = ax + b \bmod n ~ (\gcd(a, n) = 1)$
+$y = E(x) = ax + b \mod n ~ (\gcd(a, n) = 1)$
 
-$x = D(y) = a^{-1} (y - b) \bmod n$
+$x = D(y) = a^{-1} (y - b) \mod n$
 
 #### 单表代换密码
 
@@ -69,7 +69,7 @@ $x = D(y) = a^{-1} (y - b) \bmod n$
 
 ![字母频率.png](../../assets/字母频率.png)
 
-##### 手撕维吉尼亚密码
+### 手撕维吉尼亚密码
 
 步骤：
 
@@ -173,7 +173,7 @@ Unicode 为世界上所有字符都分配了一个唯一的数字编号，这个
 
 ### 线性同余生成器（LCG）
 
-$X_{n+1} = (aX_{n} + c) \bmod m$
+$X_{n+1} = (aX_{n} + c) \mod m$
 
 ### 线性反馈移位寄存器（LFSR）
 
@@ -319,7 +319,7 @@ f.close()
 
 $\phi(n) =$ 小于等于 n 的正整数中有多少个和 n 互质。
 
-$a^{\phi(n)} = 1 \bmod n,~ \gcd(a, n) = 1$
+$a^{\phi(n)} = 1 \mod n,~ \gcd(a, n) = 1$
 
 ### 公钥和私钥的生成
 
@@ -329,7 +329,7 @@ N = pq。$\phi(N) = \phi(p) \phi(q) = (p-1)(q-1)$。
 
 找一个 e 让 $e < \phi(N),~ \gcd(e, \phi(N)) = 1$。
 
-此时会有 d 让 $d = e^{-1} \bmod \phi(N)$，即 $de = 1 \bmod \phi(N)$。
+此时会有 d 让 $d = e^{-1} \mod \phi(N)$，即 $de = 1 \mod \phi(N)$。
 
 把 p 和 q 扫进遗忘的尘埃后，(N, e) 是公钥，(N, d) 是私钥。
 
@@ -341,11 +341,11 @@ N = pq。$\phi(N) = \phi(p) \phi(q) = (p-1)(q-1)$。
 
 传递一个小于 N 的整数 m。
 
-$m^e \equiv c \bmod N$。
+$m^e \equiv c \mod N$。
 
 传递 c。
 
-$c^d \equiv m \bmod N$。
+$c^d \equiv m \mod N$。
 
 ### 正确性？
 
@@ -355,26 +355,67 @@ c^d & = (m^e)^d \\
 & = m^{ed} \\
 & = m^{1 + k\phi(N)} \\
 & = m \times m^{k\phi(N)} \\
-& = m \bmod N ~(\gcd(m, N) = 1)
+& = m \mod N ~(\gcd(m, N) = 1)
 \end{aligned}
 $$
 
-$\gcd(m, N)) \neq 1$：
+$\gcd(m, N) \neq 1$：
 
 $$
 \begin{aligned}
 & n = pq \Rightarrow m = sp ~\mathrm{or}~ m = rq. \\
 & \mathrm{let} ~ m = sp. \\
-& m^{\phi(q)} = 1 \bmod q \\
-& m^{q-1} = 1 \bmod q \\
-& m^{k(p-1)(q-1)} = 1 \bmod q \\
-& m^{k \phi(N)} = 1 \bmod q = tq + 1 \\
+& m^{\phi(q)} = 1 \mod q \\
+& m^{q-1} = 1 \mod q \\
+& m^{k(p-1)(q-1)} = 1 \mod q \\
+& m^{k \phi(N)} = 1 \mod q = tq + 1 \\
 & m \times m^{k \phi(N)} = (tq + 1)m \\
 & m^{k \phi(N) + 1} = tqm + m = tq \times sp + m = tsN + m \\
-& m^{k \phi(N) + 1} = m \bmod N
+& m^{k \phi(N) + 1} = m \mod N
 \end{aligned}
 $$
 
 ### ECC
 
 和椭圆曲线有关。
+
+## 今天的作业
+
+!!! warning "警告"
+	抄袭行为是严厉禁止的。
+
+### 扩展欧几里得算法
+
+这个算法可以求解 $ax + by = 1$ 的一组 x 和 y（gcd(a, b) = 1）。
+
+$(a, b) = (b, a \bmod b) = (b, a - b \lfloor \frac{a}{b} \rfloor)$。
+
+如果现在有 x'，y' 满足 $bx' + (a - b \lfloor \frac{a}{b} \rfloor) y' = 1$，就可以用 x'，y' 反推出 x，y。
+
+那么此时 $a(x - y') + b(y - x' + \lfloor \frac{a}{b} \rfloor y') = 0$。
+
+由于 gcd(a, b) = 1，那么只能让 $x = y', y = x' - \lfloor \frac{a}{b} \rfloor y'$。
+
+### 挑战部分
+
+??? done "提示"
+	原函数逻辑是这样的：
+
+	```plain
+	[flag 207..0                             ] = R_0
+	[flag 206..0     ][bcnt(R_0 & mask) & 1  ] = R_1
+	[flag 205..0  ][*][bcnt(R_1 & mask) & 1  ] = R_2
+	...
+	[flag 0][********][bcnt(R_206 & mask) & 1] = R_207
+	[****************][bcnt(R_207 & mask) & 1] = R_208 = tmp
+	```
+
+	考虑把这个过程反过来执行。
+
+	现在我们有 tmp：tmp 的最右边一位是上次序列与上 mask 后的 1 的奇偶性。
+
+	上次序列可以通过这次序列往右移一位得到，但是最左边一位是丢失的。
+
+	不过可以找回来。这次序列往右移一位，左边补 0 再与上 mask，如果奇偶性不对的话说明左边应该补一个 1。
+
+	逆 208 次就好了。
