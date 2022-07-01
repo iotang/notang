@@ -2,7 +2,7 @@
 
 （PWN：一个拟声词，表示攻破了设备或者系统。“砰”。）
 
-## GCC 的插件 GEF
+## GDB 的插件 GEF
 
 GEF 增强了 GDB。
 
@@ -220,6 +220,52 @@ pwntools 和可执行程序之间进行交互，并提供一些很方便的功�
 >>> p.interactive()
 ```
 
+### 交互
+
+#### recv
+
+`recv(numb = 4096, timeout = default)`：
+
+接收最多 `numb` 个字节。
+
+不管接收到了多少字节，只要接收到就立刻返回内容。
+
+#### recvall
+
+`recvall()`：
+
+接收字节，直到碰上 EOF。
+
+#### recvline
+
+`recvline(keepends = True)`：
+
+接收一整行。
+
+#### recvlines
+
+`recvlines(numlines, keepends = False, timeout = default) → str list`：
+
+接收最多 `numlines` 行。
+
+#### send
+
+`send(data)`：
+
+发送消息。
+
+#### sendline
+
+`sendline(data)`：
+
+发送消息，并且接一个换行符。
+
+#### interactive
+
+`interactive()`：
+
+变成交互模式。
+
 ### 远程交互
 
 ```python
@@ -227,6 +273,50 @@ pwntools 和可执行程序之间进行交互，并提供一些很方便的功�
 >>> p.recv() # p.recvline()
 >>> ...
 >>> p.send(...)
+```
+
+### 包装整数
+
+```python
+>>> p8(0)
+'\x00'
+>>> p32(0xdeadbeef)
+'\xef\xbe\xad\xde'
+>>> p32(0xdeadbeef, endian='big')
+'\xde\xad\xbe\xef'
+>>> with context.local(endian='big'): p32(0xdeadbeef)
+'\xde\xad\xbe\xef'
+```
+
+```python
+>>> p=make_packer('all')
+>>> p(0xff)
+'\xff'
+>>> p(0x1ff)
+'\xff\x01'
+>>> with context.local(endian='big'): print repr(p(0x1ff))
+'\xff\x01'
+```
+
+### 制造指令
+
+```python
+>>> asm('nop')
+'\x90'
+>>> asm('nop', arch='arm')
+'\x00\xf0 \xe3'
+```
+
+### 汇编、反汇编
+
+```python
+>>> asm('mov eax, 0').encode('hex')
+'b800000000'
+>>> print disasm('6a0258cd80ebf9'.decode('hex'))
+   0:   6a 02                   push   0x2
+   2:   58                      pop    eax
+   3:   cd 80                   int    0x80
+   5:   eb f9                   jmp    0x0
 ```
 
 ## 今天的作业

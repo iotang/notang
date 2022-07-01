@@ -36,9 +36,10 @@
 }
 
 .md-header--shadow {
-	box-shadow: 0 0 0 0 !important;
+	box-shadow: unset !important;
+	transition: unset !important;
 }
 
 .md-tabs {
-	border-bottom: 0 !important;
+	border-bottom: unset !important;
 }
