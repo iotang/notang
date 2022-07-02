@@ -154,8 +154,8 @@ fetch('http://114.5.1.4/?a=1&b=2')
 
 ```js
 fetch('http://114.5.1.4',{
-    method: 'post',
-    body: 'a=1&b=2'
+	 method: 'post',
+	 body: 'a=1&b=2'
 	 // method: 'no-cors'
 })
 ```
@@ -222,12 +222,12 @@ fetch('http://114.5.1.4',{
 
 ```html
 <form id="autosubmit" action="http://www.example.com/api/setusername" enctype="text/plain" method="POST">
-   <input name="username" type="hidden" value="CSRFd" />
-   <input type="submit" value="Submit Request" />
+	<input name="username" type="hidden" value="CSRFd" />
+	<input type="submit" value="Submit Request" />
 </form>
 
 <script>
-   document.getElementById("autosubmit").submit();
+	document.getElementById("autosubmit").submit();
 </script>
 ```
 
@@ -346,3 +346,128 @@ curl --trace - https://www.baidu.com
 
 !!! warning "警告"
 	抄袭行为是严厉禁止的。
+
+
+### view_source
+
+??? done "提示"
+	F12 就好了。
+
+### get_post
+
+??? done "提示"
+	GET 方式就在 URL 后面加个 `?a=1`。
+
+	POST 方式可以用 HackBar 给一个 `b=2`。
+
+### robots
+
+??? done "提示"
+	robots 协议放在根目录的 `robots.txt` 下。
+
+	去访问 `robots.txt`，说是有个 `f1ag_1s_h3re.php`。里面就是 flag。
+
+### backup
+
+??? done "提示"
+	盲猜 `index.php.bak`。
+
+### cookie
+
+??? done "提示"
+	flag 躺在 `cookie.php` 的消息头里面。
+
+### disabled_button
+
+??? done "提示"
+	把那个按钮的 `disabled` 字段扔了就行了。
+
+### weak_auth
+
+??? done "提示"
+	首先提示 please login as admin，那么用户名就是 admin 了。
+
+	用户名输入 admin 后，输入密码提示 password error。
+
+	F12 发现一行注释，maybe you need a dictionary。好家伙，明摆着是要爆破是吧。
+
+	拉出 burpsuite 的 intruder 爆破手，然后随便找个字典爆破一下就行了。
+
+### simple_php
+
+??? done "提示"
+	`$a==0 and $a`？给 a 一个字符串内容，$a==0 竟然是成立的。
+
+	看起来 b 不能是数字，并且 b 要大于 1234。那个 1234 是数字吧？这怎么比较呢……？
+
+	查了一下，字符串会以它开头的一串数字为准，还有科学计数法的情况。让 b = 99999a 就行了。
+
+	PHP 这是什么鬼类型比较啊。
+
+### xff_referer
+
+??? done "提示"
+	先是限定 123.123.123.123，拿个 burpsuite 出来先篡改一下：`X-Forwarded-For: 123.123.123.123`。
+
+	然后又说必须来自 https://www.google.com。继续改 Referer 就行了。
+
+### webshell
+
+??? done "提示"
+	看起来对面是说会执行按 shell 发过去的任何指令。
+
+	说是有个叫蚁剑的工具，装了一下，建议在这之前关闭病毒监测软件。
+
+	连上就能找到 flag.txt 了。
+
+### command_execution
+
+??? done "提示"
+	没写 WAF？试了一下，是把输入的字符串后面直接接一个 `ping -c 3 ` 然后执行。那我就直接在后面接指令了。
+
+	我猜 flag 应该是藏进了一个 .txt 文件吧？输入 `127.0.0.1 && find / -name "*.txt"`。果然找到了。
+
+### simple_js
+
+??? done "提示"
+	看了一下 JS。
+
+	```js
+	function dechiffre(pass_enc){
+		var pass = "70,65,85,88,32,80,65,83,83,87,79,82,68,32,72,65,72,65";
+		var tab  = pass_enc.split(',');
+		var tab2 = pass.split(',');
+		var i,j,k,l=0,m,n,o,p = "";i = 0;j = tab.length;
+		k = j + (l) + (n=0);
+		n = tab2.length;
+		for(i = (o=0); i < (k = j = n); i++ ){
+			o = tab[i-l];
+			p += String.fromCharCode((o = tab2[i]));
+			if(i == 5)break;
+		}
+		for(i = (o=0); i < (k = j = n); i++ ){
+			o = tab[i-l];
+			if(i > 5 && i < k-1)
+				p += String.fromCharCode((o = tab2[i]));
+		}
+		p += String.fromCharCode(tab2[17]);
+		pass = p;
+		return pass;
+	}
+	String["fromCharCode"](dechiffre("\x35\x35\x2c\x35\x36\x2c\x35\x34\x2c\x37\x39\x2c\x31\x31\x35\x2c\x36\x39\x2c\x31\x31\x34\x2c\x31\x31\x36\x2c\x31\x30\x37\x2c\x34\x39\x2c\x35\x30"));
+
+	h = window.prompt('Enter password');
+	alert( dechiffre(h) );
+	```
+
+	好家伙，那个 dechiffre 不管输入啥，输出都是 FAUX PASSWORD HAHA。玩我呢。
+
+	```js
+	String["fromCharCode"](dechiffre("\x35\x35\x2c\x35\x36\x2c\x35\x34\x2c\x37\x39\x2c\x31\x31\x35\x2c\x36\x39\x2c\x31\x31\x34\x2c\x31\x31\x36\x2c\x31\x30\x37\x2c\x34\x39\x2c\x35\x30"));
+	```
+
+	这是干什么？fromCharCode？是个编了码的字符串吗？
+
+	解一下，发现是一个数组。好像都是 ascii。
+
+	转一下，确实是这样。填到 Cyberpeace{xxxxxxxxx} 里面就好了。
