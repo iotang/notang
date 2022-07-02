@@ -276,13 +276,15 @@ void exit (int status)
 
 ### 1. 在 linux 上编译、链接、装载程序
 
-\*.c -(gcc -E)-> expanded source -(gcc -s)-> \*.s -(as)-> \*.o
+??? done "提示"
+	\*.c -(gcc -E)-> expanded source -(gcc -s)-> \*.s -(as)-> \*.o
 
-然而 \*.o 文件里面还没把标准库里面的那些东西链接进去。用 gcc -o 链接。
+	然而 \*.o 文件里面还没把标准库里面的那些东西链接进去。用 gcc -o 链接。
 
 ### 2. 3. 手撕 ELF
 
-给的 struct 里面的顺序就是 ELF 文件中那些东西排列的顺序。
+??? done "提示"
+	给的 struct 里面的顺序就是 ELF 文件中那些东西排列的顺序。
 
 ### 挑战部分
 
