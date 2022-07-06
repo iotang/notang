@@ -103,35 +103,36 @@ rdi，rsi，rdx，rcx，r8，r9 六个寄存器会首先承担传递参数的责
 
 ### 格式化字符串核心：转换说明 Conversion Specification
 
-`%08hd`：
+`%[parameter][flags][field width][.precision][length]type`
 
 - %：一个象征。
-- 0：Flag。
-- 8：宽度。
-- h：长度改变标识。
-- d：说明符。
+- parameter：N$，指定第 N 个参数（从 1 开始）。
+- field width：输出的最小长度。
+- precision：输出的最大长度。
+- length：长度改变标识。比如 hh 是输出一个字节长，h 是输出两个字节长。
+- type：说明符。
+
+#### 指定参数
+
+```cpp
+printf("%4$d", 1, 2, 3, 4); // 4
+```
 
 #### 说明符
 
-- d，i：整数。
-- o，u，x，X：unsigned octal, unsigned decimal, unsigned hexadecimal。
+- d，i：有符号整数。
+- o，u，x，X：无符号 8 进制、无符号十进制、无符号 16 进制（小写字母或大写字母）。
 - e：科学计数法。
 - f，F：单浮点数。
 - c：单字符。
 - s：字符串。
-- p：指针的内容（不是指过去的）。
+- p：以地址打印。比如 printf("%p", a) 会把 a 的值当作一个地址来打印，而 printf("%p", &a) 就会打印 a 的地址。
 
 ```cpp
 int x = 114514;
 int *ptr = &x;
 printf("The address is: %p, the value is %d", ptr, *ptr);
 // The address is: 0x0000019198e0, the value is 114514
-```
-
-#### 指定参数
-
-```cpp
-printf("%4$d", 1, 2, 3, 4); // 4
 ```
 
 ### FSB 漏洞的历史
@@ -150,7 +151,7 @@ scanf("%20s", s);
 printf(s);
 ```
 
-当 printf 的 format string 中的 conversion specification 和后续的变参没有正确对应时，format string bug 就会发生!
+当 printf 的格式化串中的转换说明和后续的变参没有正确对应时，format string bug 就会发生!
 
 - printf("%d %d", a);
 - printf("%s");
@@ -158,9 +159,9 @@ printf(s);
 
 它们会输出什么呢……？
 
-如果寄存器用完了（32 位下没有），它就会从栈的开头开始一个一个拿数据！
+如果寄存器用完了（32 位下没有），它就会从它的存储格式化串的地址的上面一个的地方开始，从栈上一个一个拿数据！
 
-也就是说，拿数据也可以拿到自己的 format string 头上来！
+也就是说，如果格式化串存储在栈上，拿数据也可以拿到自己的格式化串头上来！这会带来什么影响呢？
 
 ## 格式化字符串漏洞的利用
 
