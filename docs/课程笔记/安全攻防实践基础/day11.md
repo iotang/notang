@@ -303,7 +303,7 @@ Bank 给 Kali 打钱后，调用了 Kali 的 fallback 函数。
 
 #### Fuzzing
 
-Fuzzing 是模糊测试的意思。这是一种给目标系统喂各种各样东西，并监视异常结果，以此发现软件漏洞的方法。
+Fuzzing 是模糊测试的意思。这是一种给目标系统喂各种各样的东西，并监视异常结果，以此发现软件漏洞的方法。
 
 ![what_is_fuzz](../../assets/what_is_fuzz.png)
 
