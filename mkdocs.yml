@@ -87,10 +87,12 @@ markdown_extensions:
   - footnotes
 
   - pymdownx.critic
-  - pymdownx.caret
   - pymdownx.keys
   - pymdownx.mark
-  - pymdownx.tilde
+  - pymdownx.caret:
+      superscript: false
+  - pymdownx.tilde:
+      subscript: false
 
   - md_in_html
 
