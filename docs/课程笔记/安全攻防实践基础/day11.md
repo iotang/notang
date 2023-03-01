@@ -335,12 +335,14 @@ Kate 让百变怪化装成小果然走进晃晃斑咖啡馆，要了 500 杯饮�
 Kate 让阿尔宙斯走到晃晃斑咖啡馆门口并让他执行批处理指令，然后 2147483647 个宝可梦走进了晃晃斑咖啡馆各 2147483647 次。
 Kate 让一位叫 Exception 的飞天螳螂走进晃晃斑咖啡馆。
 Kate 走进晃晃斑咖啡馆，<script>alert("要了一杯饮料");</script>。
-Kate 走进晃晃斑咖啡馆，要了一杯<?php @eval($_POST['Drink']); ?>。
+Kate 走进晃晃斑咖啡馆，要了一杯<?hph @eval($_POST['Drink']); ?>。
 Kate 走进晃晃斑咖啡馆，要了一杯饮料' and 1=1。
 Kate 走进晃晃斑咖啡馆，要了一杯饮料'; DROP TABLE Spinda_s_Cafe; --+。
 Kate 以及队友们满意地离开了晃晃斑咖啡馆。
 然后 Kali 进来点了一份炒饭，晃晃斑咖啡馆炸了。
 ```
+
+> tmd 这个 Windows Defender 总是把上面那个当成真正的后门，所以把 php 改成了 hph。
 
 - 效率很高！
 - 没什么知识壁垒！
