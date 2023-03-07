@@ -1,5 +1,8 @@
 # 计算机系统概论（短学期）
 
+!!! success "Fin."
+	该课程已经完结。
+
 - 课程代码 21121420 	
 - 课程英文名称 Introduction to computing systems
 - 开课学院 计算机科学与技术学院
