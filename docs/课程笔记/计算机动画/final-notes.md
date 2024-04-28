@@ -70,29 +70,37 @@ Edge Tweaking 思想用于解决中间多边形不封闭的问题。保持插值
 
 也就是说，我们需要让这个目标函数最小：$f = \sum _{i=0}^{m} \frac{S_i^2}{L_{AB_i}^2}$；
 
-然后这样使多边形封闭：$\phi _1 = \sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i} + S_i) \cos \alpha _i = 0$，并且 $\phi _2 = \sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i} + S_i) \sin \alpha _i = 0$，其中 $\alpha _i$ 是矢量 $P_i P_{i+1}$ 和 x 轴构成的有向角，即 $\alpha _0$ 和 $\theta _i$ 的前缀和。
+然后这样使多边形封闭：$\sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i} + S_i) \cos \alpha _i = 0$，并且 $\sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i} + S_i) \sin \alpha _i = 0$，其中 $\alpha _i$ 是矢量 $P_i P_{i+1}$ 和 x 轴构成的有向角，即 $\alpha _0$ 和 $\theta _i$ 的前缀和。
 
-引进拉格朗日函数 $\Phi(\lambda _1, \lambda _2, S_1, S_2, \cdots, S_m) =f + \lambda _1 \phi _1 + \lambda _2 \phi _2$，求偏导得 $\frac{\partial \Phi}{\partial S_i} = \frac{2 S_i}{L_{AB_i}^2} + \lambda _1 \cos \alpha _i + \lambda _2 + \sin \alpha _i = 0$。
+引进拉格朗日函数 $\Phi(\lambda _1, \lambda _2, S_1, S_2, \cdots, S_m) =f + \lambda _1 \phi _1 + \lambda _2 + \phi _2$，求偏导得 $\frac{\partial \Phi}{\partial S_i} = \frac{2 S_i}{L_{AB_i}^2} + \lambda _1 \cos \alpha _i + \lambda _2 + \sin \alpha _i = 0$。
 
 这样的话可以用 $\lambda _1$ 和 $\lambda _2$ 表示出 $S_i = -\frac{1}{2} L_{AB_i}^2(\lambda _1 \cos \alpha _i + \lambda _2 \sin \alpha _i)$，代入到两个限制条件可以得到：
 
-$\begin{cases} E \lambda _1 + F \lambda _2 = U \\ F \lambda _1 + G \lambda _2 = V \end{cases}$
+$
+\begin{cases}
+E \lambda _1 + F \lambda _2 = U \\
+F \lambda _1 + G \lambda _2 = V
+\end{cases}
+$
 
 其中，$E = \sum _{i = 0} ^{m} L_{AB_i}^2 \cos ^2 \alpha _i$，$F = \sum _{i = 0} ^{m} L_{AB_i}^2 \cos \alpha _i \sin \alpha _i$，$G = \sum _{i = 0} ^{m} L_{AB_i}^2 \sin ^2 \alpha _i$，$U = 2(\sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i}) \cos \alpha _i)$，$V = 2(\sum _{i=0}^{m} ((1 - t) L_{A_i} + t L_{B_i}) \sin \alpha _i)$。
 
 如果 $EG - F^2 \neq 0$，那么
 
 $$
+
 \lambda _1 = \frac{\begin{vmatrix}
     U & F \\ V & G
 \end{vmatrix}}{\begin{vmatrix}
     E & F \\ F & G
 \end{vmatrix}},
+
 \lambda _2 = \frac{\begin{vmatrix}
     E & U \\ F & V
 \end{vmatrix}}{\begin{vmatrix}
     E & F \\ F & G
 \end{vmatrix}}
+
 $$
 
 ## Wave 6
@@ -210,15 +218,17 @@ $$
 
 现在有时刻 $t$ 的位置 $\mathbf{x}(t)$、速度 $\mathbf{v}(t)$ 和加速度 $\mathbf{a}(t)$，如果要求 $h$ 后的位置和速度，那么可以用下面的公式进行计算：
 
-$$\mathbf{x}(t + h) = \mathbf{x}(t) + \mathbf{v}(t) h + \frac{1}{2} \mathbf{a}(t) h^2$$
-
-$$\mathbf{v}(t + h) = \mathbf{v}(t) + \frac{1}{2} (\mathbf{a}(t) + \mathbf{a}(t + h)) h$$
+$$
+\mathbf{x}(t + h) = \mathbf{x}(t) + \mathbf{v}(t) h + \frac{1}{2} \mathbf{a}(t) h^2 \\
+\mathbf{v}(t + h) = \mathbf{v}(t) + \frac{1}{2} (\mathbf{a}(t) + \mathbf{a}(t + h)) h
+$$
 
 其中位置的计算可以用下面的技巧：
 
-$$\mathbf{v}(t + \frac{1}{2} h) = \mathbf{v}(t) + \frac{1}{2} \mathbf{a} (t) h$$
-
-$$\mathbf{x}(t + h) = \mathbf{x}(t) + \mathbf{v}(t + \frac{1}{2}h)h$$
+$$
+\mathbf{v}(t + \frac{1}{2} h) = \mathbf{v}(t) + \frac{1}{2} \mathbf{a} (t) h \\
+\mathbf{x}(t + h) = \mathbf{x}(t) + \mathbf{v}(t + \frac{1}{2}h)h
+$$
 
 ## Wave 9
 
@@ -493,23 +503,6 @@ $$
 
 ### 隐式曲面表示的优缺点
 
-隐式曲面优点：
-
-1. 很容易判断一个点是否在曲面上
-2. 很容易计算曲面的交/差/并
-3. 很容易处理拓扑变化
-
-隐式曲面缺点：
-
-1. 曲面通过间接指定
-2. 很难描述尖锐特征
-3. 很难对曲面上的点进行枚举
-4. 绘制慢
-
 ### 隐式曲面中核函数的选择
 
-核函数选择低通滤波函数，即保留低频阻挡高频的函数；比如高斯函数 $h(r) = \exp (-a^2 r^2)$。
-
 ### Wyvill 的六次多项式势函数的图形形状
-
-长得像个按 y 轴翻转过来的激活函数。
