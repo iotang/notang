@@ -1,0 +1,4397 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../ch07/">
+      
+      
+        <link rel="next" href="../../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+      
+      
+      <link rel="icon" href="../../../images/victini.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>第 9 章：输入输出 - notang</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia+Code:300,300i,400,400i,700,700i%7CCascadia+Code:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Cascadia Code";--md-code-font:"Cascadia Code"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/theme.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="notang" class="md-header__button md-logo" aria-label="notang" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.39 10.74 11 19.13V22H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h1v7l2.5-1.5L12 9V2h6a2 2 0 0 1 2 2v6.3c-.22.12-.43.26-.61.44M13 19.96V22h2.04l6.13-6.12-2.04-2.05L13 19.96m9.85-6.49-1.32-1.32c-.2-.2-.53-.2-.72 0l-.98.98 2.04 2.04.98-.98c.2-.19.2-.52 0-.72Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            notang
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第 9 章：输入输出
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/iotang/notang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iotang/notang
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  欢迎来到 notang！
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../%E7%AC%94%E8%AE%B0/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  课程笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="notang" class="md-nav__button md-logo" aria-label="notang" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.39 10.74 11 19.13V22H6c-1.11 0-2-.89-2-2V4a2 2 0 0 1 2-2h1v7l2.5-1.5L12 9V2h6a2 2 0 0 1 2 2v6.3c-.22.12-.43.26-.61.44M13 19.96V22h2.04l6.13-6.12-2.04-2.05L13 19.96m9.85-6.49-1.32-1.32c-.2-.2-.53-.2-.72 0l-.98.98 2.04 2.04.98-.98c.2-.19.2-.52 0-.72Z"/></svg>
+
+    </a>
+    notang
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/iotang/notang" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    iotang/notang
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    欢迎来到 notang！
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../%E7%AC%94%E8%AE%B0/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%AC%94%E8%AE%B0/20220929_EVAFix/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20220929 的一次电脑维修
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%AC%94%E8%AE%B0/Python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%AC%94%E8%AE%B0/sqlmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SQLMAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../%E7%AC%94%E8%AE%B0/%E8%BF%99%E4%B8%AA%E7%AB%99%E7%82%B9%E7%9A%84%E6%90%AD%E5%BB%BA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    这个站点的搭建
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    课程笔记
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            课程笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    人工智能基础
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            人工智能基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%9F%BA%E7%A1%80/final-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    考试大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多媒体安全
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            多媒体安全
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 章：应用与特性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 章：水印模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 章：基础信息编码方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 5 章：旁路信息与水印
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 6 章：实用的脏纸编码方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 10 章：水印安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 11 章：内容认证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 12 章：隐写术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%A4%9A%E5%AA%92%E4%BD%93%E5%AE%89%E5%85%A8/ch13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 13 章：隐写分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    安全攻防实践基础
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            安全攻防实践基础
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day00/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 0 天：这是啥啊？
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 天：Linux 操作系统 101
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 天：二进制基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 天：逆向工程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 天：PWN 基础导论
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 5 天：密码学基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 6 天：WEB 基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 7 天：数据安全，OSINT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day08/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 8 天：格式化字符串漏洞
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day09-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 9 天（上）：面向返回地址编程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day09-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 9 天（下）：SSRF，SQL 注入
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day10-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 10 天（上）：堆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day10-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 10 天（下）：文件上传与渗透
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 11 天：智能合约安全，以及挖掘漏洞
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E5%AE%9E%E8%B7%B5%E5%9F%BA%E7%A1%80/day12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 12 天：安全研究员的自我修养
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    数据安全与隐私保护
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            数据安全与隐私保护
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 章：用户的认证
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 章：Unix 的自主访问控制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 章：MAC 和完整性保护
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 章：基于角色的访问控制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 6 章：现代加密技术
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 7 章：流加密和 CPA 安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch08/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 8 章：PRF、CPA 和 CCA 安全
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch09/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 9 章：消息认证码 MAC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E4%B8%8E%E9%9A%90%E7%A7%81%E4%BF%9D%E6%8A%A4/ch10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 10 章：公钥系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    数据库系统
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            数据库系统
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 章：啥是数据库
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 章：关系模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 章：SQL 语言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 章：进阶的 SQL 语言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 6 章：E-R 模型
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 17 章：事务
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F/ch18/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 18 章：并发控制
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%93%E9%A2%98/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    程序设计专题
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            程序设计专题
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E4%B8%93%E9%A2%98/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    结构化程序设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%8E%9F%E7%90%86/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    编程语言原理
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_8" id="__nav_3_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_8">
+            <span class="md-nav__icon md-icon"></span>
+            编程语言原理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E5%8E%9F%E7%90%86/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 周：\(\lambda\) 演算
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8A%A8%E7%94%BB/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    计算机动画
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_9" id="__nav_3_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_9">
+            <span class="md-nav__icon md-icon"></span>
+            计算机动画
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8A%A8%E7%94%BB/final-notes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    考试大纲
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    计算机系统 II
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 II
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 5 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w06/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 6 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20II/w08/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 8 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_11" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20III/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    计算机系统 III
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_11" id="__nav_3_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_11">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统 III
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%20III/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    计算机系统概论
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            计算机系统概论
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 章：欢迎上船
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 章：位，数据类型，操作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 章：数字逻辑结构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 章：冯诺依曼架构
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 5 章：LC-3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch07/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 7 章：来到世界更高峰，汇编语言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    第 9 章：输入输出
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    第 9 章：输入输出
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      权限与优先级
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="权限与优先级">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      权限
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      优先级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-status-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理器状态寄存器 Processor Status Register
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存的组织
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入，输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="输入，输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      映射到内存，还是用特殊指令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      异步，还是同步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断，还是轮询
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      键盘的输入
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="键盘的输入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kbdr-kbsr" class="md-nav__link">
+    <span class="md-ellipsis">
+      寄存器 KBDR 和 KBSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入的流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存映射输入的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      显示器的输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="显示器的输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddr-dsr" class="md-nav__link">
+    <span class="md-ellipsis">
+      寄存器 DDR 和 DSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出的流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存映射输出的实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入回显
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作系统服务流程（Trap）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作系统服务流程（Trap）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      陷入的机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRAP 指令
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的输入输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断驱动的输入输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的意义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断驱动的流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断生成的前提
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断检测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理中断信号
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理中断信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断的预处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断的预处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存被中断的程序的状态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载中断服务的状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断服务的执行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      从中断中回来
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      轮询
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="轮询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      轮询与中断的相性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      让轮询兼容中断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    软件安全原理与实践
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            软件安全原理与实践
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 周
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E8%B7%B5/w02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 周：缓存溢出
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_14" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_14" id="__nav_3_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_14">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/w01/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 1 周：AVL 树、Splay 和摊还分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/w02/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 2 周：红黑树和 B+ 树
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/w03/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 3 周：倒排索引
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/w04/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 4 周：左偏树和斜堆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/w05/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    第 5 周：二项堆
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      权限与优先级
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="权限与优先级">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      权限
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      优先级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#processor-status-register" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理器状态寄存器 Processor Status Register
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存的组织
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入，输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="输入，输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      映射到内存，还是用特殊指令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      异步，还是同步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断，还是轮询
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      键盘的输入
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="键盘的输入">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kbdr-kbsr" class="md-nav__link">
+    <span class="md-ellipsis">
+      寄存器 KBDR 和 KBSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入的流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存映射输入的实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      显示器的输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="显示器的输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ddr-dsr" class="md-nav__link">
+    <span class="md-ellipsis">
+      寄存器 DDR 和 DSR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      输出的流程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      内存映射输出的实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      输入回显
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trap" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作系统服务流程（Trap）
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作系统服务流程（Trap）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      陷入的机制
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trap_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRAP 指令
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的输入输出
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断驱动的输入输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的意义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断驱动的流程
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断驱动的流程">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断生成的前提
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断检测
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      处理中断信号
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="处理中断信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断的预处理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="中断的预处理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存被中断的程序的状态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      加载中断服务的状态
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      中断服务的执行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      从中断中回来
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      轮询
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="轮询">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      轮询与中断的相性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      让轮询兼容中断
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="9">第 9 章：输入输出<a class="headerlink" href="#9" title="Permanent link">&para;</a></h1>
+<h2 id="_1">权限与优先级<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">权限<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>很明显，并不是所有的程序都拥有运行任意指令的权限。比如一旦你放开了指令 HALT 的使用，那么随便一个人都可以让电脑关机；如果你放开了某些内存地址的读写权限，那么随便来个家伙都可以让系统当场爆炸。</p>
+<p>既然如此，我们需要设计“权限”这个东西。在 LC-3 中，权限管理非常简单：就分为“有特权”和“没有特权”。一般来说，有特权的程序被称为“运行在管理员模式（Supervisor Mode）下”，或者说拥有管理员权限，没有特权的程序被称为“运行在用户模式（User Mode）下”，或者说只拥有用户权限。</p>
+<p>管理员模式下的程序有读写执行任意内存的能力。</p>
+<h3 id="_3">优先级<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>这里指的是程序运行的优先级。是的，程序在这里是不平等的。比如说你瞎 jb 写的程序拥有强度 0 的优先级，关于键盘输入的程序拥有强度 4 的优先级，而……如果可以这么理解的话，电源拥有强度无限大的优先级，因为毕竟如果你拔线了，那电脑上的所有程序都连着你一起爆炸了……或者说，赶紧运行一个<em>强度无限大的程序</em>以最小化损失？</p>
+<h3 id="processor-status-register">处理器状态寄存器 Processor Status Register<a class="headerlink" href="#processor-status-register" title="Permanent link">&para;</a></h3>
+<p>处理器状态寄存器（Processor Status Register，PSR）又是一个 16 位长的寄存器。</p>
+<ul>
+<li>[15]：Pr：Priv：权限。如果是 0 的话就是管理员模式，如果是 1 的话就是用户模式。</li>
+<li>[10:8]：PL：Priority：优先级。表示现在这个程序的执行优先级，值越高优先级越高。</li>
+<li>[2]：N：状态码</li>
+<li>[1]：Z：状态码</li>
+<li>[0]：P：状态码</li>
+</ul>
+<p>用户程序的优先级是最低的 0。键盘的是 4。</p>
+<h2 id="_4">内存的组织<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>LC-3 是个 16 位机器，而它的寻址空间自然最多也是 x0000 到 xffff。</p>
+<p>其中，x0000 到 x2fff 是权限内存（Privileged Memory），其中包含的是操作系统的程序、数据结构，以及一些不能动的东西。只有管理员模式下的程序才能动它们。这一块区域又叫做系统空间（system space）。</p>
+<p>而 x3000 到 xfdff 是非权限内存，存储用户的程序和数据。而这块区域就叫做用户空间（user space）。</p>
+<p>那 xfe00 到 xffff 是啥子呢？事实上，它们不是“内存”。也就是说内存区域到 xfdff 就打止了。这些地方存储的是输入输出函数，以及和处理器有关的一些寄存器。比如 PSR 就是 xfffc，而处理器的主控寄存器（Master Control Register，MCR）就是 xfffe。很明显，访问这些区域也需要管理员权限。这块空间被叫做 I/O 空间（I/O Space）。</p>
+<p>内存中有两个栈，系统空间里面有一个，用户空间里面也有一个。一个给操作系统用，需要管理员权限；一个给用户用，不需要管理员权限。系统空间的栈的栈指针叫 Supervisor Stack Pointer（SSP），而用户空间的叫 User Stack Pointer，各自指向自己栈的栈顶。这里的栈扩大的时候地址也是往低处走的。</p>
+<p>那栈指针 r6 存的是谁呢？因为一个程序要不运行在管理员模式下，要不运行在用户模式下，也就是说这两个栈不会同时被使用。栈指针 r6 存的就是正在使用的那个栈，而没在用的栈指针有两个寄存器，Saved_SSP 和 Saved_USP 专门存下来。</p>
+<p><img alt="LC-3 的内存区域" src="../../../assets/lc-3_memory.png" /></p>
+<p><em>图：LC-3 的内存区域</em></p>
+<h2 id="_5">输入，输出<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>输入输出设备，像键盘啊，显示器啊，硬盘啊什么的，使用寄存器来进行输入输出。一般来说，即使是最简陋的输入输出设备，也至少需要两个寄存器：一个存数据，一个存状态。</p>
+<h3 id="_6">映射到内存，还是用特殊指令<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>很久以前，计算机们对于数据的输入和输出分为两派。一派是拿一些特殊指令来执行输入和输出，另一派是把输入和输出映射到内存，然后用各种数据传递的指令来进行输入和输出。LC-3 使用的是后一种。对，就是 xfe00 到 xffff 的那一堆东西。</p>
+<h3 id="_7">异步，还是同步<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>大部分输入输出设备的速度都是赶不上处理器的。比如说键盘，你叫顺风下速度 +6 的雷吉艾勒奇过来打字，他相比处理器的速度来说都差了十万八千里——即使是主频只有 2 GHz 的处理器，一个时钟周期都只有 0.5 纳秒！纵使你说输入输出可能需要好多个时钟周期，但是即使是要一万三千个时钟周期，那也只有几毫秒长，这不还是赶不上。</p>
+<p>既然如此，我们可不可以让键盘以<em>慢一些的</em>时钟频率，均匀地接收信号呢？到底要多慢呢？太快了的话有些浪费性能，太慢的话你永远也不知道像速录员啊音游玩家啊的手速到底有多快。</p>
+<p>问题出在哪里呢？因为输入输出设备的工作风格和处理器不同——速度不同，均匀性也不同。我们把输入输出设备的这种风格叫做异步（asynchronous），不是伊布。反义词就是同步（synchronous）。大多数输入输出设备和处理器之间的交互都是异步的。</p>
+<p>怎么处理异步呢？这需要它们之间的一些“握手”（handshaking）的机制。比如说键盘，它为此有一个寄存器，记录键盘上面有没有键被按下去。又比如说显示器，它也可以拿个寄存器告诉处理器说它是否已经完成当前内容的显示。这些寄存器就叫做 flag。</p>
+<p>这些 flag 是让它们之间同步（synchronization）的最简单的形式。拿上面的键盘做例子，键盘上面有键的话就把 flag 设为 1；而处理器发现 flag 为 1 的时候就会拿走数据，并且把 flag 设成 0，告诉键盘，啊，刚刚那个键已经被拿走了。</p>
+<p>不过也有输入输出设备本来就和处理器是同步的。比如说有个发臭的打点计时器，每隔 114514 个时钟周期就会咆哮一下。那么上文中的 flag 就不必要了。这个时候，它们两个被叫做“同步地（synchronously）”运行。</p>
+<h3 id="_8">中断，还是轮询<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>中断和轮询的区别在于，交互的起手是由谁控制的。</p>
+<p>比如说雷吉艾勒奇在打字。当他按下一个键的时候，键盘信号就一下子冲过来然后拦住了处理器说，啊，我这边有个键被按下去了，你赶紧读一下！处理器被它这么一中断，就只好把键盘内容给读了再继续自己的工作。这个就叫做中断。</p>
+<p>还是雷吉艾勒奇在打字。当他按下一个键的时候，键盘的 flag 被设成 1。但它并没有中断处理器，而是处理器每隔一段时间来看看 flag 的值，如果是 1 的话就把键盘的值拿走，看看发生了什么。这个就叫做轮询。</p>
+<h2 id="_9">键盘的输入<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="kbdr-kbsr">寄存器 KBDR 和 KBSR<a class="headerlink" href="#kbdr-kbsr" title="Permanent link">&para;</a></h3>
+<p>键盘数据寄存器（keyboard data register，KBDR）在 xfe02 的位置，而键盘状态寄存器（keyboard status register，KBSR）在 xfe00 的位置。</p>
+<p>KBDR 只有 [7:0] 位是有值的，因为 ASCII 码也就 256 个，其它地方都是 0；KBSR 就更过分了，现在就只用了 [15] 这一位。但是对于 LC-3 来说，16 位 16 位地寻址总是方便一些，不是么？</p>
+<h3 id="_10">输入的流程<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>KBSR[15] 就是上面所说的 flag。当键盘上面有个键被按下去的时候，那个键的 ASCII 码会被放到 KBDR[7:0] 里面，而 KBSR[15] 会设成 1。而当处理器接收这些信息的时候，它会读取 KBDR[7:0] 的数据，然后把 KBSR[15] 清零。在 KBSR[15] 不是 0 的时候按下其它的键都是没用的。</p>
+<p>在轮询状态下，因为 KBSR[15] 的关系，每个键只会被读取一次；而因为 KBSR[15] 为 1 的时候键盘被禁用了，因此先前按下的键的数据也不会丢失。总的来说，KBSR[15] 确保了每个按下的键都刚好被读取了 1 次。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nl">START:</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="c1">; Test for</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="c1">; character input</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="w"> </span><span class="no">B</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="nf">BRnzp</span><span class="w"> </span><span class="no">NEXT_TASK</span><span class="w"> </span><span class="c1">; Go to the next task</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="nf">A</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE00</span><span class="w"> </span><span class="c1">; Address of KBSR</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="nf">B</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE02</span><span class="w"> </span><span class="c1">; Address of KBDR</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_11">内存映射输入的实现<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p><img alt="内存映射输入" src="../../../assets/memory_mapped_input.png" /></p>
+<p><em>图：内存映射输入</em></p>
+<p>和一般的内存读写操作差不多。</p>
+<ul>
+<li>MAR 被写入的内容是设备的那些寄存器的地址。</li>
+<li>MDR 写入 MAR 指向的内容。</li>
+<li>DR 写入 MDR 的内容。</li>
+</ul>
+<h2 id="_12">显示器的输出<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="ddr-dsr">寄存器 DDR 和 DSR<a class="headerlink" href="#ddr-dsr" title="Permanent link">&para;</a></h3>
+<p>显示器数据寄存器（display data register，KBDR）在 xfe06 的位置，而显示器状态寄存器（display status register，KBSR）在 xfe04 的位置。</p>
+<p>和 KBDR 与 KBSR 的情况一样，DDR 只有 [7:0] 位是有值的（也是存储 ASCII 码），其它地方都是 0；DSR 也是只有 [15] 这一位是有值的。</p>
+<h3 id="_13">输出的流程<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>当 LC-3 往 DDR[7:0] 丢数据的时候，它会同时清空 DSR[15]，通知显示器干活。显示器完成显示后，它会把 DSR[15] 设成 1。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nl">START:</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">A</span><span class="w"> </span><span class="c1">; Test to see if</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">START</span><span class="w"> </span><span class="c1">; output register is ready</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="w"> </span><span class="no">B</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="nf">BRnzp</span><span class="w"> </span><span class="no">NEXT_TASK</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="nf">A</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE04</span><span class="w"> </span><span class="c1">; Address of DSR</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="nf">B</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE06</span><span class="w"> </span><span class="c1">; Address of DDR</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_14">内存映射输出的实现<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p><img alt="内存映射输出" src="../../../assets/memory_mapped_output.png" /></p>
+<p><em>图：内存映射输出</em></p>
+<p>也是和一般的内存读写操作差不多。</p>
+<ul>
+<li>MAR 被写入的内容是设备的那些寄存器的地址。</li>
+<li>MDR 写入将要写入内存的内容。</li>
+<li>控制信号一来，内存完成写入。</li>
+</ul>
+<h3 id="_15">输入回显<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nl">START:</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">KBSR</span><span class="w"> </span><span class="c1">; Test for character input</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">START</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="w"> </span><span class="no">KBDR</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="nl">ECHO:</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">DSR</span><span class="w"> </span><span class="c1">; Test output register ready</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">ECHO</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="w"> </span><span class="no">DDR</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="nf">BRnzp</span><span class="w"> </span><span class="no">NEXT_TASK</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nf">KBSR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE00</span><span class="w"> </span><span class="c1">; Address of KBSR</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nf">KBDR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE02</span><span class="w"> </span><span class="c1">; Address of KBDR</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="nf">DSR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE04</span><span class="w"> </span><span class="c1">; Address of DSR</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nf">DDR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE06</span><span class="w"> </span><span class="c1">; Address of DDR</span>
+</code></pre></div></td></tr></table></div>
+<p><img alt="有关内存映射输入输出的数据通路" src="../../../assets/memory_mapped_io.png" /></p>
+<p><em>图：有关内存映射输入输出的数据通路</em></p>
+<h2 id="trap">操作系统服务流程（Trap）<a class="headerlink" href="#trap" title="Permanent link">&para;</a></h2>
+<p>输入输出的流程我们在上面都看到了。</p>
+<ul>
+<li>我们有数据寄存器，用来存储有关输入输出设备的数据。</li>
+<li>我们还有状态寄存器，用来协调高速的处理器和低速的输入输出设备。</li>
+<li>它们之间的工作，需要异步的机制。</li>
+</ul>
+<p>事实上，这并不是大部分程序员都了解的内容，尤其是那些修软件工程的。</p>
+<p>并且，如果给那些程序员直接读写 KBDR、KBSR 什么的权限的话，还会带来另一个问题：这几个寄存器是被很多个程序共享的。如果你误操作把它们搞乱了，那大家都估计得跟着你一起爆炸了。</p>
+<p>咋办？有一种比较简单和安全的解决方法，是借助于操作系统和陷入（Trap）指令。用户程序通过自陷指令，请求有管理员权限的操作系统运行一些特权级任务，比如说输入输出。这叫做服务调用（service call），或者系统调用（syscall）。</p>
+<h3 id="_16">陷入的机制<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p>陷入机制包含这些要素：</p>
+<ul>
+<li>服务程序（service routine）集合。它们由操作系统提供，但以用户的身份执行。LC-3 最多支持 256 种这样的程序。</li>
+<li>起始地址（starting addresses）表，或者叫陷入向量表。它存了上面 256 个程序的起始地址。这个表的位置就是 x0000 到 x00ff。比如之前说 x25 是 halt，就是这里的 x0025。这个就叫做陷入向量。</li>
+<li>自陷指令。这是用户程序使用那些服务程序的桥梁。</li>
+<li>指回用户程序的链接，用来从服务程序返回用户程序。</li>
+</ul>
+<h3 id="trap_1">TRAP 指令<a class="headerlink" href="#trap_1" title="Permanent link">&para;</a></h3>
+<p>TRAP 指令之前已经提到过：</p>
+<ul>
+<li>[15:12] TRAP：1111</li>
+<li>[11:8] 未使用：0000</li>
+<li>[7:0] trapvect8：陷入向量</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">TEMP</span><span class="o">=</span><span class="n">PSR</span><span class="p">;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PSR</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="w">    </span><span class="n">Saved</span><span class="w"> </span><span class="n">USP</span><span class="o">=</span><span class="n">R6</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">R6</span><span class="o">=</span><span class="n">Saved</span><span class="w"> </span><span class="n">SSP</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="n">PSR</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="n">Push</span><span class="w"> </span><span class="n">TEMP</span><span class="p">,</span><span class="w"> </span><span class="n">nextPC</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">system</span><span class="w"> </span><span class="n">stack</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">PC</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mem</span><span class="p">[</span><span class="n">ZEXT</span><span class="p">(</span><span class="n">trapvect8</span><span class="p">)];</span>
+</code></pre></div></td></tr></table></div>
+<p>这个指令执行的时候：</p>
+<ul>
+<li>首先要把陷入向量那 8 位给零拓展（zero-extend），就是直接在更高位补 0。（另一种拓展方式和符号位有关。）</li>
+<li>然后，找到陷入向量表对应的位置，把对应的值存到 MAR。这就是对应的服务程序的起始地址。</li>
+<li>把当前的 PC 存到 r7 里面。这是上文所说的链接。</li>
+<li>之后当内存完成读取后，把 MDR 存到 PC 中，完成跳转。</li>
+</ul>
+<p>服务程序跑完后，通过 rti 指令就可以回去了。为什么不用 ret？因为这还涉及到一些模式切换的问题。</p>
+<p><img alt="TRAP 指令的流程" src="../../../assets/trap_routine.png" /></p>
+<p><em>图：TRAP 指令的流程</em></p>
+<p>一个字符输入的服务流程：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span>
+<span class="normal"><a href="#__codelineno-4-21">21</a></span>
+<span class="normal"><a href="#__codelineno-4-22">22</a></span>
+<span class="normal"><a href="#__codelineno-4-23">23</a></span>
+<span class="normal"><a href="#__codelineno-4-24">24</a></span>
+<span class="normal"><a href="#__codelineno-4-25">25</a></span>
+<span class="normal"><a href="#__codelineno-4-26">26</a></span>
+<span class="normal"><a href="#__codelineno-4-27">27</a></span>
+<span class="normal"><a href="#__codelineno-4-28">28</a></span>
+<span class="normal"><a href="#__codelineno-4-29">29</a></span>
+<span class="normal"><a href="#__codelineno-4-30">30</a></span>
+<span class="normal"><a href="#__codelineno-4-31">31</a></span>
+<span class="normal"><a href="#__codelineno-4-32">32</a></span>
+<span class="normal"><a href="#__codelineno-4-33">33</a></span>
+<span class="normal"><a href="#__codelineno-4-34">34</a></span>
+<span class="normal"><a href="#__codelineno-4-35">35</a></span>
+<span class="normal"><a href="#__codelineno-4-36">36</a></span>
+<span class="normal"><a href="#__codelineno-4-37">37</a></span>
+<span class="normal"><a href="#__codelineno-4-38">38</a></span>
+<span class="normal"><a href="#__codelineno-4-39">39</a></span>
+<span class="normal"><a href="#__codelineno-4-40">40</a></span>
+<span class="normal"><a href="#__codelineno-4-41">41</a></span>
+<span class="normal"><a href="#__codelineno-4-42">42</a></span>
+<span class="normal"><a href="#__codelineno-4-43">43</a></span>
+<span class="normal"><a href="#__codelineno-4-44">44</a></span>
+<span class="normal"><a href="#__codelineno-4-45">45</a></span>
+<span class="normal"><a href="#__codelineno-4-46">46</a></span>
+<span class="normal"><a href="#__codelineno-4-47">47</a></span>
+<span class="normal"><a href="#__codelineno-4-48">48</a></span>
+<span class="normal"><a href="#__codelineno-4-49">49</a></span>
+<span class="normal"><a href="#__codelineno-4-50">50</a></span>
+<span class="normal"><a href="#__codelineno-4-51">51</a></span>
+<span class="normal"><a href="#__codelineno-4-52">52</a></span>
+<span class="normal"><a href="#__codelineno-4-53">53</a></span>
+<span class="normal"><a href="#__codelineno-4-54">54</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">; Service Routine for Keyboard Input</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="c1">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="na">.ORIG</span><span class="w"> </span><span class="no">x04A0</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="nl">START:</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="nf">ST</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">SaveR1</span><span class="w"> </span><span class="c1">; Save the values in the registers</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="w">    </span><span class="nf">ST</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">SaveR2</span><span class="w"> </span><span class="c1">; that are used so that they</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="nf">ST</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">SaveR3</span><span class="w"> </span><span class="c1">; can be restored before RET</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="c1">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="nf">LD</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">Newline</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="nl">L1:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">DSR</span><span class="w"> </span><span class="c1">; Check DDR -- is it free?</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">L1</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Move cursor to new clean line</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="c1">;</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="nf">LEA</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">Prompt</span><span class="w"> </span><span class="c1">; Prompt is starting address</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">                  </span><span class="c1">; of prompt string</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="nl">Loop:</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="nf">LDR</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="no">R1</span><span class="p">,</span><span class="mi">#0</span><span class="w"> </span><span class="c1">; Get next prompt character</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="nf">BRz</span><span class="w"> </span><span class="no">Input</span><span class="w"> </span><span class="c1">; Check for end of prompt string</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">    </span><span class="nf">L2</span><span class="w"> </span><span class="no">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">DSR</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">L2</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Write next character of</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">               </span><span class="c1">; prompt string</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24"></a><span class="w">    </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">R1</span><span class="p">,</span><span class="mi">#1</span><span class="w"> </span><span class="c1">; Increment prompt pointer</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25"></a><span class="w">    </span><span class="nf">BRnzp</span><span class="w"> </span><span class="no">Loop</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26"></a><span class="c1">;</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27"></a><span class="nl">Input:</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">KBSR</span><span class="w"> </span><span class="c1">; Has a character been typed?</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">Input</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="no">KBDR</span><span class="w"> </span><span class="c1">; Load it into R0</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31"></a><span class="w">    </span><span class="nf">L3</span><span class="w"> </span><span class="no">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">DSR</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">L3</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Echo input character</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34"></a><span class="w">               </span><span class="c1">; to the monitor</span>
+<a id="__codelineno-4-35" name="__codelineno-4-35"></a><span class="c1">;</span>
+<a id="__codelineno-4-36" name="__codelineno-4-36"></a><span class="nl">L4:</span>
+<a id="__codelineno-4-37" name="__codelineno-4-37"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">DSR</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">L4</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Move cursor to new clean line</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40"></a><span class="w">    </span><span class="nf">LD</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">SaveR1</span><span class="w"> </span><span class="c1">; Service routine done, restore</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41"></a><span class="w">    </span><span class="nf">LD</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">SaveR2</span><span class="w"> </span><span class="c1">; original values in registers.</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42"></a><span class="w">    </span><span class="nf">LD</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">SaveR3</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43"></a><span class="w">    </span><span class="nf">RTI</span><span class="w"> </span><span class="c1">; Return from Trap</span>
+<a id="__codelineno-4-44" name="__codelineno-4-44"></a><span class="c1">;</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45"></a><span class="nf">SaveR1</span><span class="w"> </span><span class="no">.BLKW</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-4-46" name="__codelineno-4-46"></a><span class="nf">SaveR2</span><span class="w"> </span><span class="no">.BLKW</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-4-47" name="__codelineno-4-47"></a><span class="nf">SaveR3</span><span class="w"> </span><span class="no">.BLKW</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-4-48" name="__codelineno-4-48"></a><span class="nf">DSR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE04</span>
+<a id="__codelineno-4-49" name="__codelineno-4-49"></a><span class="nf">DDR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE06</span>
+<a id="__codelineno-4-50" name="__codelineno-4-50"></a><span class="nf">KBSR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE00</span>
+<a id="__codelineno-4-51" name="__codelineno-4-51"></a><span class="nf">KBDR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE02</span>
+<a id="__codelineno-4-52" name="__codelineno-4-52"></a><span class="nf">Newline</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">x000A</span><span class="w"> </span><span class="c1">; ASCII code for newline</span>
+<a id="__codelineno-4-53" name="__codelineno-4-53"></a><span class="nf">Prompt</span><span class="w"> </span><span class="no">.STRINGZ</span><span class="w"> </span><span class="err">&quot;</span><span class="no">Input</span><span class="w"> </span><span class="no">a</span><span class="w"> </span><span class="no">character</span><span class="err">&gt;&quot;</span>
+<a id="__codelineno-4-54" name="__codelineno-4-54"></a><span class="na">.END</span>
+</code></pre></div></td></tr></table></div>
+<p>一个字符输出的服务流程：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="na">.ORIG</span><span class="w"> </span><span class="no">x0420</span><span class="w"> </span><span class="c1">; System call starting address</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nf">ST</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">SaveR1</span><span class="w"> </span><span class="c1">; R1 will be used to poll the DSR</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">              </span><span class="c1">; hardware</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1">; Write the character</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="nf">TryWrite</span><span class="err">：</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">DSR</span><span class="w"> </span><span class="c1">; Get status</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">TryWrite</span><span class="w"> </span><span class="c1">; Bit 15 on says display is ready</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="nl">WriteIt:</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="w"> </span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Write character</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="c1">; return from trap</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="nl">Return:</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">    </span><span class="nf">LD</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">SaveR1</span><span class="w"> </span><span class="c1">; Restore registers</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">    </span><span class="nf">RTI</span><span class="w"> </span><span class="c1">; Return from trap</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="nf">DSR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE04</span><span class="w"> </span><span class="c1">; Address of display status register</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="nf">DDR</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE06</span><span class="w"> </span><span class="c1">; Address of display data register</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="nf">SaveR1</span><span class="w"> </span><span class="no">.BLKW</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="na">.END</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_17">中断驱动的输入输出<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p>啥是中断驱动的输入输出呢？它的意思是输入输出设备可以：</p>
+<ul>
+<li>打断和自己没有半毛钱关系的程序，</li>
+<li>迫使处理器运行满足自己需要的程序，</li>
+<li>并且运行完后继续原来的程序，而原来的程序以为刚刚无事发生。</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>程序 A 正在运行第 n 条指令。
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>程序 A 正在运行第 n+1 条指令。
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>程序 A 正在运行第 n+2 条指令。
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>突然，检测到了一个中断信号！
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>程序 A 被挂起！
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>PC 存储的内容变成了程序 B 的地址！
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>为了输入输出设备，程序 B 开始了！
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>为了输入输出设备，程序 B 在运行。
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>为了输入输出设备，程序 B 在运行。
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>为了输入输出设备，程序 B 终止了！
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>程序 A 被复活了！
+<a id="__codelineno-6-12" name="__codelineno-6-12"></a>程序 A 正在运行第 n+3 条指令。
+<a id="__codelineno-6-13" name="__codelineno-6-13"></a>程序 A 正在运行第 n+4 条指令。
+<a id="__codelineno-6-14" name="__codelineno-6-14"></a>……
+</code></pre></div></td></tr></table></div>
+<p>在程序 A 的眼中，刚刚是这样子的：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a>程序 A 正在运行第 n 条指令。
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a>程序 A 正在运行第 n+1 条指令。
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a>程序 A 正在运行第 n+2 条指令。
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a>程序 A 正在运行第 n+3 条指令。
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a>程序 A 正在运行第 n+4 条指令。
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a>……
+</code></pre></div></td></tr></table></div>
+<p><strong>中断和陷入的区别就在于，陷入是程序自己提出来的，而中断是人在家中坐，锅从天上来。</strong></p>
+<h3 id="_18">中断驱动的意义<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>和中断相对的那个概念是啥？对，轮询。</p>
+<p>很明显，轮询这个东西，啊，还是比较费时间。处理器要花很大的精力一遍一遍地把状态寄存器拿出来看看，然后执行各种分支操作。而中断驱动让它们不复存在。</p>
+<h2 id="_19">中断驱动的流程<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>中断驱动的整个流程可以细分成两步：</p>
+<ul>
+<li>首先，让输入输出设备<strong>能够</strong>中断处理器。</li>
+<li>之后，要处理它的中断请求。</li>
+</ul>
+<h3 id="_20">中断生成的前提<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>事实上，生成中断不是一件想当然的事情。</p>
+<ul>
+<li>首先，输入输出设备需要的确有生成它的必要。</li>
+<li>另外，这个设备需要有能要求这个请求的权限。</li>
+<li>并且，这个请求的优先级还得比当前程序要高。</li>
+</ul>
+<p>什么时候有这个“必要”性呢？对于一个键盘来说，就是有按键被按下去的时候；对于一个显示器来说，就是完成显示，等待下一帧的时候。这不就是 KBSR 和 DSR 么！</p>
+<p>那么，又怎么描述“权限”呢？拿个寄存器中的一位来表示好了。这一位叫做启用中断位（interrupt enable，IE）。通常来说，这个寄存器就是对应设备的状态寄存器，比如对于这里的键盘和显示器，这一位就是 KBSR[14] 和 DSR[14]。</p>
+<h3 id="_21">中断信号<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>中断（INT）信号用来打断（或者尝试打断）当前程序的运行。</p>
+<p>怎么判断关于优先级的事情呢？在计算机运行的时候，可能同时会有很多个不同优先级等级（priority level，PL）的东西在运行。此时会有专门的一个设备，统计它们之间优先级最高的那个。</p>
+<p>然后当现在这个程序想请求一个中断，那么此时会把它的优先级和当前最高的优先级作比较。如果现在这个程序的优先级<strong>大于</strong>当前最高的优先级，那么中断信号就会生成。</p>
+<p><img alt="中断信号的生成" src="../../../assets/int_signal_gen.png" /></p>
+<p><em>图：中断信号的生成</em></p>
+<h3 id="_22">中断检测<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>那么中断信号怎么起效果呢？</p>
+<p>让我们回到比较早的一些时候。那个时候，我们知道了一个指令的执行过程中有 6 步：取指令（FETCH）、译码（DECODE）、地址计算（EVALUATE ADDRESS）、取操作数（FETCH OPERAND）、执行（EXECUTE）和存放结果（STORE RESULT）。</p>
+<p>这个时候，我们发现了个大问题：如果此时有个中断信号到来，我们没有时间去存储那些栈指针啊返回指针啊什么的东西。因此，应该在最后一步（STORE RESULT）时同时检查有没有中断信号到来。如果没有的话，就像往常一样返回 FETCH 步骤；如果有的话，就在返回 FETCH 步骤之前，先保存足够的状态信息（为了中断完成后能正常恢复当前的状态），还要把目标的服务地址装到 PC 里面。</p>
+<h2 id="_23">处理中断信号<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h2>
+<p>还记得刚刚的程序 A 和程序 B 的例子么？现在来给它编个号。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1"></a>程序 A 正在运行第 n 条指令。
+<a id="__codelineno-8-2" name="__codelineno-8-2"></a>程序 A 正在运行第 n+1 条指令。
+<a id="__codelineno-8-3" name="__codelineno-8-3"></a>程序 A 正在运行第 n+2 条指令。
+<a id="__codelineno-8-4" name="__codelineno-8-4"></a>1：突然，检测到了一个中断信号！
+<a id="__codelineno-8-5" name="__codelineno-8-5"></a>1：程序 A 被挂起！
+<a id="__codelineno-8-6" name="__codelineno-8-6"></a>1：PC 存储的内容变成了程序 B 的地址！
+<a id="__codelineno-8-7" name="__codelineno-8-7"></a>2：为了输入输出设备，程序 B 开始了！
+<a id="__codelineno-8-8" name="__codelineno-8-8"></a>2：为了输入输出设备，程序 B 在运行。
+<a id="__codelineno-8-9" name="__codelineno-8-9"></a>2：为了输入输出设备，程序 B 在运行。
+<a id="__codelineno-8-10" name="__codelineno-8-10"></a>2：为了输入输出设备，程序 B 终止了！
+<a id="__codelineno-8-11" name="__codelineno-8-11"></a>3：程序 A 被复活了！
+<a id="__codelineno-8-12" name="__codelineno-8-12"></a>程序 A 正在运行第 n+3 条指令。
+<a id="__codelineno-8-13" name="__codelineno-8-13"></a>程序 A 正在运行第 n+4 条指令。
+<a id="__codelineno-8-14" name="__codelineno-8-14"></a>……
+</code></pre></div></td></tr></table></div>
+<p>我们可以看到，处理一个中断信号可以分成三步：</p>
+<ul>
+<li>1：中断的预处理。</li>
+<li>2：中断服务的执行。</li>
+<li>3：从中断中回来。</li>
+</ul>
+<h3 id="_24">中断的预处理<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h4 id="_25">保存被中断的程序的状态<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h4>
+<p>程序的状态，可以说是程序执行时所依赖的资源的一个快照。这个快照包含各种各样的代码段、内存以及寄存器，当然还包括 PC 和 PSR。</p>
+<p>而要打断一个程序并让它之后能正常复活的话，就得在打断它之前保存足够的信息。对于 LC-3 来说，就是存储 PC 和 PSR。为什么不把其它寄存器也存下来？因为 LC-3 里面的服务程序中都会自己把它们备份下来，等自己搞完的时候再恢复。</p>
+<p>PC 和 PSR 是存在管理员空间里面的那个栈中的。同时，因为权限的变化，此时还要把当前的栈指针交换到管理员的那个栈那里去。也就是说，要把 r6 存到 Saved_USP 里面，然后把 Saved_SSP 的值给 r6。</p>
+<h4 id="_26">加载中断服务的状态<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<p>在之前的 PC 和 PSR 完成存储后，接下来就是把它们两个设成中断服务的 PC 和 PSR 了。</p>
+<p>大多数处理器使用的是中断向量的方式，而 LC-3 也不例外。在这里，处理器接收到一个中断信号时，连带着的还有一个 8 位的中断向量和一个优先级。在这里提供的是之前筛选出来的最高优先级所对应的中断向量。这个叫 INTV。</p>
+<p>拿到中断后，处理器会把 8 位的 INTV 扩展到 16 位，让它成为一个地址。不知道你还记不记得，x0000 到 x00ff 里面放的是“陷入”向量表；而这里的中断向量表的位置就是 x0100 到 x01ff，也是每一个内存地址包含一个中断服务函数的开始位置。这就是接下来 PC 所需要存储的东西。</p>
+<p>PSR 说，那我呢？因为中断服务函数还没开始跑，那么最低三位那个 NZP 状态码也就暂时没什么用。不过给个面子，给 PSR[2:0] 赋值为 010。另外，中断服务下的权限是管理员权限，所以 PSR[15] 是 0。优先级 PSR[10:8] 的值和具体的中断请求有关。</p>
+<h3 id="_27">中断服务的执行<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h3>
+<p>在上面一切准备就绪之后，PC 和 PSR 都已经变成了应该有的值。开跑就完事了。</p>
+<h3 id="_28">从中断中回来<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>所有中断服务函数的结尾都是一个 rti（opcode 是 1000）。不是 ret 哈！为什么，难道 rti 比 ret 要高贵？</p>
+<p>还记得中断的预处理中发生了什么吗？我们改了栈指针，改了权限，还改了各种各样乱七八糟的东西。如果直接使用 ret 的话，仙布管能不能回到正确的位置，光是权限错误就可以直接原地爆炸了。</p>
+<p>这个 rti 会把之前存到栈里面的 PC 和 PSR 弹出来，放到该放的位置，然后把栈指针几个变量修一下（把 r6 交还给用户的栈什么的）就可以了。然后原来的程序接着一跑，芜湖，好像无事发生。</p>
+<p><img alt="一个中断套中断的例子" src="../../../assets/eg_int_and_int.png" /></p>
+<p><em>图：一个中断套中断的例子</em></p>
+<h2 id="_29">轮询<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h2>
+<h3 id="_30">轮询与中断的相性<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<p>中断一下，还是来看看远方的轮询吧家人们。</p>
+<p>现在我们要以轮询的方式，往显示器上面写一个字符串。每隔一段时间，我们就来看看 DSR[15] 的情况：如果能写下一个字符就让它写，否则就再等等。</p>
+<p>那该怎么做？先 LDI 一下把 DSR 拿出来，然后 BRzp 判一判，要写的话就 STI 写一下 DDR。LDI，BRzp，STI……问题来了，如果在它们执行的中间，突然冲出来一个中断，就有可能导致中断之前 DSR 显示还能写，中断之后又不能了，然后 STI 就写了个寂寞。</p>
+<p>之前我们不是说过中断以后原程序就像“无事发生”吗，这是怎么回事啊？因为“无事发生”又不涉及到那些外面的设备！</p>
+<p>难道我们要在开轮询的时候把中断禁用了？那如果你这个轮询占用了大多数的 CPU 时间，中断就会被禁用很长很长的时间。这对一台计算机来说是非常危险的事情。</p>
+<h3 id="_31">让轮询兼容中断<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p>不过，也不是没有其它的解决方法。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span>
+<span class="normal"><a href="#__codelineno-9-18">18</a></span>
+<span class="normal"><a href="#__codelineno-9-19">19</a></span>
+<span class="normal"><a href="#__codelineno-9-20">20</a></span>
+<span class="normal"><a href="#__codelineno-9-21">21</a></span>
+<span class="normal"><a href="#__codelineno-9-22">22</a></span>
+<span class="normal"><a href="#__codelineno-9-23">23</a></span>
+<span class="normal"><a href="#__codelineno-9-24">24</a></span>
+<span class="normal"><a href="#__codelineno-9-25">25</a></span>
+<span class="normal"><a href="#__codelineno-9-26">26</a></span>
+<span class="normal"><a href="#__codelineno-9-27">27</a></span>
+<span class="normal"><a href="#__codelineno-9-28">28</a></span>
+<span class="normal"><a href="#__codelineno-9-29">29</a></span>
+<span class="normal"><a href="#__codelineno-9-30">30</a></span>
+<span class="normal"><a href="#__codelineno-9-31">31</a></span>
+<span class="normal"><a href="#__codelineno-9-32">32</a></span>
+<span class="normal"><a href="#__codelineno-9-33">33</a></span>
+<span class="normal"><a href="#__codelineno-9-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="err">01</span><span class="w">           </span><span class="na">.ORIG</span><span class="w"> </span><span class="no">x0420</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="err">02</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#-1</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="err">03</span><span class="w">           </span><span class="nf">STR</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="err">04</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#-1</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="err">05</span><span class="w">           </span><span class="nf">STR</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="err">06</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#-1</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="err">07</span><span class="w">           </span><span class="nf">STR</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span><span class="w"> </span><span class="c1">; Save R1,R2,R3 on the stack</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="err">08</span><span class="w">           </span><span class="c1">;</span>
+<a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="err">09</span><span class="w">           </span><span class="nf">LDI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="w"> </span><span class="no">PSR</span>
+<a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="err">0</span><span class="nf">A</span><span class="w">           </span><span class="no">LD</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">INTMASK</span>
+<a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="err">0</span><span class="nf">B</span><span class="w">           </span><span class="no">AND</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">R1</span><span class="p">,</span><span class="no">R2</span><span class="w"> </span><span class="c1">; R1=original PSR, R2=PSR with interrupts disabled</span>
+<a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="err">0</span><span class="nf">C</span><span class="w">           </span>
+<a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="mi">0</span><span class="no">D</span><span class="w">  </span><span class="no">POLL</span><span class="w">     </span><span class="no">STI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">PSR</span><span class="w"> </span><span class="c1">; enable interrupts (if they were enabled to begin)</span>
+<a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="err">0</span><span class="nf">E</span><span class="w">           </span><span class="no">STI</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">PSR</span><span class="w"> </span><span class="c1">; disable interrupts</span>
+<a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="err">0</span><span class="nf">F</span><span class="w">           </span><span class="no">LDI</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">DSR</span>
+<a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="err">10</span><span class="w">           </span><span class="nf">BRzp</span><span class="w"> </span><span class="no">POLL</span><span class="w"> </span><span class="c1">; Poll the DSR</span>
+<a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="err">11</span><span class="w">           </span><span class="nf">STI</span><span class="w"> </span><span class="no">R0</span><span class="p">,</span><span class="no">DDR</span><span class="w"> </span><span class="c1">; Store the character into the DDR</span>
+<a id="__codelineno-9-18" name="__codelineno-9-18"></a><span class="err">12</span><span class="w">           </span><span class="nf">STI</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">PSR</span><span class="w"> </span><span class="c1">; Restore original PSR</span>
+<a id="__codelineno-9-19" name="__codelineno-9-19"></a><span class="err">13</span><span class="w">           </span>
+<a id="__codelineno-9-20" name="__codelineno-9-20"></a><span class="err">14</span><span class="w">           </span><span class="nf">LDR</span><span class="w"> </span><span class="no">R3</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span>
+<a id="__codelineno-9-21" name="__codelineno-9-21"></a><span class="err">15</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#1</span>
+<a id="__codelineno-9-22" name="__codelineno-9-22"></a><span class="err">16</span><span class="w">           </span><span class="nf">LDR</span><span class="w"> </span><span class="no">R2</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span>
+<a id="__codelineno-9-23" name="__codelineno-9-23"></a><span class="err">17</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#1</span>
+<a id="__codelineno-9-24" name="__codelineno-9-24"></a><span class="err">18</span><span class="w">           </span><span class="nf">LDR</span><span class="w"> </span><span class="no">R1</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#0</span>
+<a id="__codelineno-9-25" name="__codelineno-9-25"></a><span class="err">19</span><span class="w">           </span><span class="nf">ADD</span><span class="w"> </span><span class="no">R6</span><span class="p">,</span><span class="no">R6</span><span class="p">,</span><span class="mi">#1</span><span class="w"> </span><span class="c1">; Restore R3,R2,and R1 from the stack</span>
+<a id="__codelineno-9-26" name="__codelineno-9-26"></a><span class="err">1</span><span class="nf">A</span><span class="w">           </span>
+<a id="__codelineno-9-27" name="__codelineno-9-27"></a><span class="mi">1</span><span class="no">B</span><span class="w">           </span><span class="no">RTI</span>
+<a id="__codelineno-9-28" name="__codelineno-9-28"></a><span class="err">1</span><span class="nf">C</span><span class="w">        </span>
+<a id="__codelineno-9-29" name="__codelineno-9-29"></a><span class="mi">1</span><span class="no">D</span><span class="w">  </span><span class="no">INTMASK</span><span class="w"> </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xBFFF</span>
+<a id="__codelineno-9-30" name="__codelineno-9-30"></a><span class="err">1</span><span class="nf">E</span><span class="w">  </span><span class="no">PSR</span><span class="w">     </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFFFC</span>
+<a id="__codelineno-9-31" name="__codelineno-9-31"></a><span class="err">1</span><span class="nf">F</span><span class="w">  </span><span class="no">DSR</span><span class="w">     </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE04</span>
+<a id="__codelineno-9-32" name="__codelineno-9-32"></a><span class="err">20</span><span class="w">  </span><span class="nf">DDR</span><span class="w">     </span><span class="no">.FILL</span><span class="w"> </span><span class="no">xFE06</span>
+<a id="__codelineno-9-33" name="__codelineno-9-33"></a><span class="err">21</span><span class="w">        </span>
+<a id="__codelineno-9-34" name="__codelineno-9-34"></a><span class="err">22</span><span class="w">          </span><span class="na">.END</span>
+</code></pre></div></td></tr></table></div>
+<p>上面的代码中，第 15 行到第 17 行是我们希望不要被中断干扰的地方。</p>
+<p>PSR[14] 是启用中断位（IE），如果要清除这一位的话就与上一个 xbfff 就行了。通过这种方法，我们就可以让禁用中断的时间<em>尽量</em>短，以不至于影响其它程序太多。</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1-2.1-2M12.5 7v5.2l4 2.4-1 1L11 13V7h1.5M11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2v1.8Z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_datetime">2024-06-18 22:58:50</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022 iotang | CC-BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/iotang" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://steamcommunity.com/profiles/76561198292790354/" target="_blank" rel="noopener" title="steamcommunity.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M496 256c0 137-111.2 248-248.4 248-113.8 0-209.6-76.3-239-180.4l95.2 39.3c6.4 32.1 34.9 56.4 68.9 56.4 39.2 0 71.9-32.4 70.2-73.5l84.5-60.2c52.1 1.3 95.8-40.9 95.8-93.5 0-51.6-42-93.5-93.7-93.5s-93.7 42-93.7 93.5v1.2L176.6 279c-15.5-.9-30.7 3.4-43.5 12.1L0 236.1C10.2 108.4 117.1 8 247.6 8 384.8 8 496 119 496 256zM155.7 384.3l-30.5-12.6a52.79 52.79 0 0 0 27.2 25.8c26.9 11.2 57.8-1.6 69-28.4 5.4-13 5.5-27.3.1-40.3-5.4-13-15.5-23.2-28.5-28.6-12.9-5.4-26.7-5.2-38.9-.6l31.5 13c19.8 8.2 29.2 30.9 20.9 50.7-8.3 19.9-31 29.2-50.8 21zm173.8-129.9c-34.4 0-62.4-28-62.4-62.3s28-62.3 62.4-62.3 62.4 28 62.4 62.3-27.9 62.3-62.4 62.3zm.1-15.6c25.9 0 46.9-21 46.9-46.8 0-25.9-21-46.8-46.9-46.8s-46.9 21-46.9 46.8c.1 25.8 21.1 46.8 46.9 46.8z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/12212409" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
